@@ -1,0 +1,256 @@
+.produtos-page {
+  padding: 4rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  min-height: 80vh;
+}
+
+.heading {
+  text-align: center;
+  font-size: 3.5rem;
+  color: white;
+  margin-bottom: 2rem;
+}
+
+.heading span {
+  color: #ffb700;
+}
+
+/* ===== FILTROS ===== */
+.filtros {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 3rem;
+}
+
+.filtro-btn {
+  padding: 0.8rem 2rem;
+  border: 2px solid #555;
+  background: transparent;
+  color: #ccc;
+  font-size: 1.5rem;
+  cursor: pointer;
+  border-radius: 5rem;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  font-family: inherit;
+}
+
+.filtro-btn:hover {
+  border-color: #ffb700;
+  color: #ffb700;
+}
+
+.filtro-btn.ativo {
+  background: #ffb700;
+  border-color: #ffb700;
+  color: #111;
+  font-weight: bold;
+}
+
+/* ===== TOAST ===== */
+.toast-carrinho {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background: #ffb700;
+  color: #111;
+  padding: 1.2rem 2rem;
+  border-radius: 1rem;
+  font-size: 1.4rem;
+  font-weight: 600;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  z-index: 9999;
+  animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+  from { transform: translateY(20px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+
+/* ===== CARREGANDO ===== */
+.carregando {
+  text-align: center;
+  padding: 5rem;
+  color: #aaa;
+  font-size: 1.6rem;
+}
+
+/* ===== GRADE DE PRODUTOS ===== */
+.produtos-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .produtos-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .produtos-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* ===== CARD ===== */
+.produto-card {
+  border: 1px solid #333;
+  border-radius: 1rem;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s;
+  background: #181716;
+}
+
+.produto-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+  border-color: #ffb700;
+}
+
+.produto-card.esgotado {
+  opacity: 0.65;
+  border-color: #444;
+}
+
+.produto-card.esgotado:hover {
+  transform: none;
+  border-color: #444;
+  box-shadow: none;
+}
+
+/* ===== IMAGEM ===== */
+.imagem-container {
+  position: relative;
+}
+
+.imagem-container img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+}
+
+/* ===== TAGS ===== */
+.tag {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  padding: 0.4rem 0.8rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border-radius: 0.4rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.tag-novo    { background: #ffb700; color: #111; }
+.tag-esgotado{ background: #666; color: #fff; }
+
+/* ===== FAVORITO ===== */
+.btn-favorito {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: rgba(0, 0, 0, 0.55);
+  border: none;
+  border-radius: 50%;
+  width: 38px;
+  height: 38px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease, background 0.2s;
+}
+
+.btn-favorito:hover {
+  transform: scale(1.2);
+  background: rgba(0, 0, 0, 0.75);
+}
+
+/* ===== INFO DO CARD ===== */
+.card-info {
+  padding: 1.2rem;
+}
+
+.card-info h3 {
+  font-size: 1.3rem;
+  color: #ddd;
+  margin-bottom: 0.5rem;
+  line-height: 1.4;
+  min-height: 3.6em;
+}
+
+.descricao {
+  font-size: 1.1rem;
+  color: #888;
+  margin-bottom: 1rem;
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.precos {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.preco-atual {
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: #ffb700;
+}
+
+.preco-original {
+  font-size: 1.2rem;
+  color: #666;
+  text-decoration: line-through;
+}
+
+/* ===== BOTÃO ADICIONAR ===== */
+.btn-adicionar {
+  display: block;
+  width: 100%;
+  padding: 0.9rem;
+  background: #ffb700;
+  color: #111;
+  border: none;
+  border-radius: 0.5rem;
+  font-weight: bold;
+  font-size: 1.3rem;
+  cursor: pointer;
+  text-align: center;
+  transition: background 0.3s ease;
+  font-family: inherit;
+}
+
+.btn-adicionar:hover:not(.desabilitado):not(:disabled) {
+  background: #ffd000;
+}
+
+.btn-adicionar.desabilitado,
+.btn-adicionar:disabled {
+  background: #333;
+  color: #666;
+  cursor: not-allowed;
+}
+
+/* ===== SEM PRODUTOS ===== */
+.sem-produtos {
+  text-align: center;
+  padding: 4rem;
+  color: #666;
+  font-size: 1.6rem;
+}
