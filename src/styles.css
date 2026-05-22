@@ -1,6 +1,16 @@
-body {
-    margin: 0;
-    padding: 0;
+:root {
+  --amarelo:    #ffb700;
+  --claro:      #ffd000;
+  --cinzaclaro: #444342;
+  --cinza:      #2a2929;
+  --preto:      #0f0f0f;
+  --branco:     #fff8e0;
+}
 
-    background-color: #2a2929;
+body {
+  background-color: #0f0f0f;
+  color: #fff8e0;
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', -apple-system, sans-serif;
 }

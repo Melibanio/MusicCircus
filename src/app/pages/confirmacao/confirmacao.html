@@ -1,0 +1,33 @@
+<div class="confirmacao-container">
+  <div class="confirmacao-card">
+    
+    <div class="icone-sucesso">🎸</div>
+    
+    <h1 class="titulo">Pedido Confirmado!</h1>
+    <p class="subtitulo">Obrigado pela sua compra, sua ordem foi realizada com sucesso.</p>
+
+    <div class="pedido-info">
+      <div class="info-row">
+        <span class="info-label">Número do pedido</span>
+        <span class="info-valor">#{{ numeroPedido }}</span>
+      </div>
+      <div class="info-row">
+        <span class="info-label">Entrega estimada</span>
+        <span class="info-valor">5–7 dias úteis</span>
+      </div>
+      <div class="info-row">
+        <span class="info-label">Status</span>
+        <span class="info-valor status">Em processamento</span>
+      </div>
+    </div>
+
+    <p class="email-aviso">
+      Você receberá um e-mail com os detalhes do seu pedido em breve.
+    </p>
+
+    <button class="btn-continuar" (click)="continuarComprando()">
+      Continuar Comprando
+    </button>
+
+  </div>
+</div>
