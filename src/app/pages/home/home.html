@@ -8,32 +8,6 @@
        • ViewChild: #carouselTrack referenciado no .ts
      ═══════════════════════════════════════════════════════ -->
 
-<!-- ── HEADER ────────────────────────────────────────────── -->
-<header>
-  <!-- Checkbox hamburguer (menu mobile) -->
-  <input type="checkbox" id="toggler" />
-  <label for="toggler" class="fas fa-bars"></label>
-
-  <!-- Logo — routerLink troca o href="/views/index.html" pelo roteamento Angular -->
-  <a routerLink="/" class="logo">MUSIC CIRCUS <span>.</span></a>
-
-  <!-- Navbar — routerLink + routerLinkActive no lugar de <a href=""> -->
-  <nav class="navbar">
-    <a routerLink="/"           routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">HOME</a>
-    <a routerLink="/sobre"      routerLinkActive="active">SOBRE NÓS</a>
-    <a routerLink="/"           fragment="productos"      routerLinkActive="active">PRODUTOS</a>
-    <a routerLink="/"           fragment="cursos"         routerLinkActive="active">CURSOS</a>
-    <a routerLink="/atendimento" routerLinkActive="active">ATENDIMENTO</a>
-  </nav>
-
-  <!-- Ícones do usuário -->
-  <div class="icons">
-    <a routerLink="/perfil" fragment="favoritos" class="fas fa-heart"       title="Favoritos"></a>
-    <a routerLink="/carrinho"                    class="fas fa-shopping-cart" title="Carrinho"></a>
-    <a routerLink="/login"                       class="fas fa-user"          title="Minha Conta"></a>
-  </div>
-</header>
-
 
 <!-- ── BANNER ─────────────────────────────────────────────── -->
 <section class="home" id="home">
