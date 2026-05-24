@@ -1,1 +1,138 @@
-<p>login works!</p>
+<nav class= "navegacao">
+    <div class="logo">
+        MUSIC CIRCUS
+    </div>
+    <div class="links-navegacao">
+        <a href="">Início</a>
+        <a href="">Sobre nós</a>
+        <a href="">Produtos</a>
+        <a href="">Perfil</a>
+        <a href="">Carrinho</a>
+    </div>
+
+    <button class="botao-navegacao">
+        Entrar
+    </button>
+</nav>
+
+<div class="principal">
+    <div class="lado-esquerdo">
+        <div class="conteudo-esquerdo">
+           
+            <p class="boas-vindas">Bem-vindo de volta à</p>
+
+            <h1>
+                MUSIC<br>
+                CIRCUS
+            </h1>
+
+            <div class="linha"></div>
+
+            <p class="descricao">
+                A maior loja de instrumentos musicais do Brasil. Entre e encontre o som que é seu.
+            </p>
+        </div>
+    </div>
+
+    <div class="lado-direito">
+
+        <div class="formulario">
+
+             <mat-button-toggle-group
+             [(ngModel)]="tipoLogin"
+                >
+
+            <mat-button-toggle value="cliente">
+            Cliente
+             </mat-button-toggle>
+
+            <mat-button-toggle value="admin">
+            Administrador
+             </mat-button-toggle>
+
+            </mat-button-toggle-group>
+
+            <h4>{{
+                    tipoLogin === 'cliente'
+                    ? 'ÁREA DO CLIENTE'
+                    : 'ÁREA ADMINISTRATIVA'
+                    }}</h4>
+
+            <h2>Entrar</h2>
+
+            <p class="texto-formulario">{{
+                 tipoLogin === 'cliente'
+                    ? 'Acesse sua conta para ver seus pedidos, favoritos e histórico de compras.'
+                    : 'Acesso restrito para administradores'
+                    }}
+            </p>
+
+            <form [formGroup]="formulario">
+
+                <label for="emailLogin">E-mail</label>
+
+                <input
+                type="email"
+                id="emailLogin"
+                formControlName="email"
+                placeholder="Digite seu e-mail"
+                >
+
+                @if (
+                formulario.get('email')?.invalid &&
+                formulario.get('email')?.touched
+                ) {
+
+                <small class="erro">
+                Digite um e-mail válido
+                </small>
+
+                }
+
+                <label for="senhaLogin">Senha</label>
+
+                <input
+                type="password"
+                id="senhaLogin"
+                formControlName="senha"
+                placeholder="Digite sua senha"
+                >
+
+                @if (
+                formulario.get('senha')?.invalid &&
+                formulario.get('senha')?.touched
+                ) {
+
+                <small class="erro">
+                A senha deve ter pelo menos 6 caracteres
+                </small>
+
+                }
+
+                <p class="esqueci-senha">
+                    <a routerLink="/recuperar">
+                        Esqueci minha senha
+                    </a>
+                </p>
+
+                <button
+                    type="button"
+                    class="botao"
+                    (click)="validarLogin()"
+                >
+                    Entrar
+                </button>
+
+            </form>
+
+            <p class="rodape-formulario">
+                Ainda não possui uma conta?
+
+                <a routerLink="/cadastro">
+                    Criar conta
+                </a>
+            </p>
+
+        </div>
+    </div>
+</div>

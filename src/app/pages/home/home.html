@@ -1,0 +1,292 @@
+<!-- ═══════════════════════════════════════════════════════
+     home.component.html  —  Music Circus (Angular)
+     Convertido de HTML puro para sintaxe Angular:
+       • Diretivas estruturais: *ngFor, *ngIf
+       • Event binding: (click), (ngSubmit)
+       • Property binding: [src], [href]
+       • Two-way binding: [(ngModel)]
+       • ViewChild: #carouselTrack referenciado no .ts
+     ═══════════════════════════════════════════════════════ -->
+
+<!-- ── HEADER ────────────────────────────────────────────── -->
+<header>
+  <!-- Checkbox hamburguer (menu mobile) -->
+  <input type="checkbox" id="toggler" />
+  <label for="toggler" class="fas fa-bars"></label>
+
+  <!-- Logo — routerLink troca o href="/views/index.html" pelo roteamento Angular -->
+  <a routerLink="/" class="logo">MUSIC CIRCUS <span>.</span></a>
+
+  <!-- Navbar — routerLink + routerLinkActive no lugar de <a href=""> -->
+  <nav class="navbar">
+    <a routerLink="/"           routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">HOME</a>
+    <a routerLink="/sobre"      routerLinkActive="active">SOBRE NÓS</a>
+    <a routerLink="/"           fragment="productos"      routerLinkActive="active">PRODUTOS</a>
+    <a routerLink="/"           fragment="cursos"         routerLinkActive="active">CURSOS</a>
+    <a routerLink="/atendimento" routerLinkActive="active">ATENDIMENTO</a>
+  </nav>
+
+  <!-- Ícones do usuário -->
+  <div class="icons">
+    <a routerLink="/perfil" fragment="favoritos" class="fas fa-heart"       title="Favoritos"></a>
+    <a routerLink="/carrinho"                    class="fas fa-shopping-cart" title="Carrinho"></a>
+    <a routerLink="/login"                       class="fas fa-user"          title="Minha Conta"></a>
+  </div>
+</header>
+
+
+<!-- ── BANNER ─────────────────────────────────────────────── -->
+<section class="home" id="home">
+  <div class="content">
+    <h3>Instrumentos de Cordas</h3>
+    <span>O violão mais famoso voltou pra loja!</span>
+    <p>
+      Porque cada instrumento tem seu som, um papel e uma personalidade
+      completamente única! Com qual instrumento gostaria de mostrar sua canção?
+    </p>
+    <!-- routerLink aponta para a seção de produtos (pode ser ajustado) -->
+    <a routerLink="/" fragment="productos" class="btn">Confira!</a>
+  </div>
+</section>
+
+
+<!-- ── CATEGORIAS ─────────────────────────────────────────── -->
+
+<section class="categoria" id="categoria">
+  <div class="box" *ngFor="let cat of categorias">
+    <!-- [src] e [alt] recebem os valores do objeto via property binding -->
+    <img [src]="cat.imagem" [alt]="cat.nome" />
+    <div class="content">
+      <span>{{ cat.tipo }}</span>
+      <h3>{{ cat.nome }}</h3>
+      <a href="#" class="btn">Conferir</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ── INFORMAÇÕES / ÍCONES ───────────────────────────────── -->
+<section class="icons-container">
+
+  <div class="icons">
+    <i class="fas fa-shipping-fast"></i>
+    <div class="info">
+      <h3>Envio Gratis</h3>
+      <span>para todos os pedidos</span>
+    </div>
+  </div>
+
+  <div class="icons">
+    <i class="fas fa-money-check"></i>
+    <div class="info">
+      <h3>Parcelamento</h3>
+      <span>em até 10x no cartão de crédito</span>
+    </div>
+  </div>
+
+  <div class="icons">
+    <i class="fas fa-donate"></i>
+    <div class="info">
+      <h3>Com desconto</h3>
+      <span>10% off no pix/boleto</span>
+    </div>
+  </div>
+
+  <div class="icons">
+    <i class="fas fa-certificate"></i>
+    <div class="info">
+      <h3>Precedência</h3>
+      <span>Revenda autorizada</span>
+    </div>
+  </div>
+
+</section>
+
+
+<!-- ── PRODUTOS ───────────────────────────────────────────── -->
+
+<section class="productos" id="productos">
+  <h1 class="heading">Novos <span>Produtos</span></h1>
+
+  <div class="box-container">
+    <div class="box" *ngFor="let produto of produtos">
+      <span class="desconto">{{ produto.desconto }}</span>
+
+      <div class="image">
+        <img [src]="produto.imagem" [alt]="produto.nome" />
+
+        <div class="icons">
+          <a href="#" class="fas fa-heart"  title="Favoritar"></a>
+
+          <!-- (click) Angular no lugar de onclick="addToCart(...)" do HTML original -->
+          <button class="cart-btn" (click)="addToCart(produto)">
+            Adicione ao Carrinho
+          </button>
+
+          <a href="#" class="fas fa-share" title="Compartilhar"></a>
+        </div>
+      </div>
+
+      <div class="content">
+        <h3>{{ produto.nome }}</h3>
+        <div class="preço">
+          <!-- formatarPreco() é um método do .ts que usa Intl para formatar em R$ -->
+          {{ formatarPreco(produto.preco) }}
+          <span>{{ formatarPreco(produto.precoOriginal) }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ── CARROSSEL DE CURSOS ────────────────────────────────── -->
+
+<section class="caroussel" id="cursos">
+  <h1 class="heading">Cursos para <span>Aprender</span></h1>
+
+  <div class="carousel-wrapper">
+    <!-- Botão anterior -->
+    <button class="carousel-btn prev" (click)="carouselPrev()">⬅</button>
+
+    <div class="carousel">
+      <!-- #carouselTrack: referência para o ViewChild no .ts -->
+      <div class="carousel-track" #carouselTrack>
+
+        <!--
+          *ngFor sobre cursosCarrossel (array com clones já inseridos pelo buildCarouselData()).
+          [href] e [src] recebem os valores do objeto Curso.
+        -->
+        <a
+          class="card"
+          *ngFor="let curso of cursosCarrossel"
+          [href]="curso.link"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img [src]="curso.imagem" [alt]="curso.titulo" />
+          <span class="card-title">{{ curso.titulo }}</span>
+        </a>
+
+      </div>
+    </div>
+
+    <!-- Botão próximo -->
+    <button class="carousel-btn next" (click)="carouselNext()">➡</button>
+  </div>
+</section>
+
+
+<!-- ── CONTATO ────────────────────────────────────────────── -->
+<!--
+  <form> com (ngSubmit) no lugar de action="".
+  [(ngModel)] substitui os value="" dos inputs — two-way binding.
+  Cada campo atualiza a propriedade correspondente no .ts em tempo real.
+  IMPORTANTE: FormsModule precisa estar importado no AppModule para ngModel funcionar.
+-->
+<section class="contato" id="contato">
+  <h1 class="heading">Fale <span>Conosco</span></h1>
+
+  <div class="row">
+    <form (ngSubmit)="onContatoSubmit()" #contatoForm="ngForm">
+
+      <input
+        type="text"
+        placeholder="Nome *"
+        class="box"
+        [(ngModel)]="contatoNome"
+        name="nome"
+        required
+      />
+
+      <input
+        type="email"
+        placeholder="E-mail *"
+        class="box"
+        [(ngModel)]="contatoEmail"
+        name="email"
+        required
+        email
+      />
+
+      <input
+        type="tel"
+        placeholder="Telefone"
+        class="box"
+        [(ngModel)]="contatoTelefone"
+        name="telefone"
+      />
+
+      <textarea
+        class="box"
+        placeholder="Mensagem *"
+        cols="30"
+        rows="10"
+        [(ngModel)]="contatoMensagem"
+        name="mensagem"
+        required
+      ></textarea>
+
+      <!-- [disabled] desabilita o botão se o formulário for inválido -->
+      <button
+        type="submit"
+        class="btn"
+        [disabled]="contatoForm.invalid"
+      >
+        Enviar mensagem
+      </button>
+
+    </form>
+
+    <div class="image">
+      <img src="/public/IMG/contato.jpg" alt="Contato Music Circus" />
+    </div>
+  </div>
+</section>
+
+
+<!-- ── RODAPÉ ─────────────────────────────────────────────── -->
+<section class="footer">
+  <div class="box-container">
+
+    <div class="box">
+      <h3>Informações</h3>
+      <a routerLink="/">Home</a>
+      <a routerLink="/sobre">Sobre Nós</a>
+      <a routerLink="/" fragment="productos">Produtos</a>
+      <a routerLink="/" fragment="cursos">Cursos</a>
+      <a routerLink="/atendimento">Atendimento</a>
+    </div>
+
+    <div class="box">
+      <h3>Sua Área</h3>
+      <a routerLink="/perfil">Minha Conta</a>
+      <a routerLink="/pedidos">Meus Pedidos</a>
+      <a routerLink="/perfil" fragment="favoritos">Meus Favoritos</a>
+    </div>
+
+    <div class="box">
+      <h3>Redes Sociais</h3>
+      <a href="#">Instagram</a>
+      <a href="#">Facebook</a>
+      <a href="#">Whatsapp</a>
+      <a href="#">Endereços</a>
+    </div>
+
+    <div class="box">
+      <h3>Contatos</h3>
+      <a href="tel:+5599999999">+55 99999-9999</a>
+      <a href="tel:+5556220922">+55 5622-0922</a>
+      <a href="mailto:atendimento@musiccircus.com">atendimento@musiccircus.com</a>
+      <img src="/img/pagamentos.png" alt="Formas de pagamento" />
+    </div>
+
+  </div>
+
+  <div class="creditos">
+    Criado por
+    <span>Melissa, Laura, Nicolle, Marcos, Murilo, Estella e Oswaldo
+      — Turma STADSCAS2NB</span>
+    — @SENAC 2026 | Todos direitos reservados
+  </div>
+</section>

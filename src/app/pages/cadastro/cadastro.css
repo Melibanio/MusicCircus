@@ -43,7 +43,6 @@ body {
     font-family: 'Cormorant Garamound, serif';
     font-size: 19px;
     font-weight: 700;
-
 }
 
 .links-navegacao {
@@ -61,7 +60,6 @@ body {
     letter-spacing: 1px;
     padding: 8px 0;
     transition: 0.3s;
-
 }
 
 .botao-navegacao {
@@ -98,18 +96,21 @@ body {
     position: relative;
 }
 
-.principal::before{
+.principal::before {
     content: '';
-    position:absolute;
-    inset:0;
+
+    position: absolute;
+    inset: 0;
+
     background: linear-gradient(
         #00000080,
         #00000070
     );
+
     z-index: 1;
 }
 
-.lado-esquerdo {
+.lado-esquerdo{
     width: 50%;
 
     display: flex;
@@ -119,6 +120,20 @@ body {
     padding: 60px;
     position: relative;
     z-index: 2;
+
+}
+
+.lado-direito {
+    width: 50%;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 60px;
+
+   position: relative;
+   z-index: 2;
 }
 
 .conteudo-esquerdo {
@@ -156,7 +171,6 @@ h1 {
 
     background: #ffb700;
     margin: 28px 0;
-
 }
 
 .descricao {
@@ -173,19 +187,6 @@ h1 {
         0 1px 2px #0f0f0fCC;
 }
 
-.lado-direito {
-    width: 50%;
-    
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    padding: 60px;
-
-   position: relative;
-   z-index: 2;
-}
-
 .formulario {
     color:#ffb700;
     width: 100%;
@@ -199,16 +200,12 @@ h1 {
     box-shadow: 0 8px 40px #0f0f0f;
 }
 
-mat-button-toggle-group {
-    margin-bottom: 24px;
-}
-
 h4 {
     font-family: 'Inter', sans-serif;
     font-size: 14px;
     letter-spacing: 3px;
     font-weight: 600;
-    margin-bottom: 3px;
+    margin-bottom: 10px;
 }
 
 h2 {
@@ -258,30 +255,6 @@ input:focus {
     outline: none;
     border: 1px solid #f3db53;
     box-shadow: 0 0 0 4px #f3db5314;
-}
-
-.erro {
-    color: #ff4d4d;
-
-    font-size: 13px;
-
-    margin-top: 6px;
-
-    display: block;
-}
-
-.esqueci-senha {
-    text-align: right;
-    margin-top: 12px;
-}
-
-.esqueci-senha a {
-    color: #ffb700;
-    text-decoration: none;
-    font-size: 13px;
-    font-family: 'Inter', sans-serif;
-    font-weight: 500;
-    transition: 0.3s;
 }
 
 .botao {

@@ -1,1 +1,275 @@
-<p>perfil works!</p>
+<!--
+  perfil.html — Music Circus (Angular)
+  ══════════════════════════════════════════════════════════════════
+  Conversões realizadas:
+
+  JS → Angular                              Motivo
+  ────────────────────────────────────────────────────────────────
+  classList.add/remove('active')      →  [class.active]="abaAtiva === 'x'"
+  botao.addEventListener('click')     →  (click)="trocarAba('x')"
+  inputFoto.addEventListener('change')→  (change)="onFotoSelecionada($event)"
+  input.style.borderColor = 'red'     →  [class.input-erro]="erros['campo']"
+  botaoSalvar.addEventListener        →  (click)="salvarDados()"
+  cartao.classList.toggle('selected') →  (click)="toggleFavorito(f)"
+  barraLateral.style.display = 'none' →  *ngIf="usuarioLogado"
+  nomePerfil.textContent = nome.value →  {{ nomePerfil }}  (atualizado no .ts)
+  Pedidos hardcoded (3 divs iguais)   →  @for (p of pedidos)
+  Favoritos hardcoded (3 divs iguais) →  @for (f of favoritos)
+  window.addEventListener('resize')   →  REMOVIDO — CSS já cuida com @media
+  ══════════════════════════════════════════════════════════════════
+-->
+
+<div class="container">
+
+  <!-- ── SIDEBAR ── visível só quando logado ──────────────────────────── -->
+  <!--
+    Substitui: if (!usuarioLogado) barraLateral.style.display = 'none'
+    @if é a sintaxe moderna do Angular 17+; pode trocar por *ngIf se preferir.
+  -->
+  @if (usuarioLogado) {
+    <aside class="barra-lateral">
+
+      <div class="area-perfil">
+
+        <!-- Foto de perfil — label abre o input[type=file] oculto -->
+        <label for="input-foto-perfil" class="foto-perfil">
+
+          <!--
+            [src] recebe fotoPerfilUrl atualizada pelo FileReader no .ts.
+            Substitui: previewFotoPerfil.src = e.target.result
+          -->
+          <img [src]="fotoPerfilUrl" alt="Foto de perfil" id="preview-foto-perfil" />
+
+          <!--
+            *ngIf substitui: iconeCamera.style.display = 'none'
+            A propriedade mostrarIconeCamera é setada para false no .ts após upload.
+          -->
+          @if (mostrarIconeCamera) {
+            <div class="icone-camera">+</div>
+          }
+
+        </label>
+
+        <!--
+          (change) substitui o addEventListener do input no JS original.
+          O input continua oculto via CSS (#input-foto-perfil { display:none }).
+        -->
+        <input
+          type="file"
+          id="input-foto-perfil"
+          accept="image/*"
+          (change)="onFotoSelecionada($event)"
+        />
+
+        <!-- {{ nomePerfil }} atualiza automaticamente quando salvarDados() é chamado -->
+        <h2>{{ nomePerfil }}</h2>
+
+      </div>
+
+      <!-- Menu de abas -->
+      <nav class="menu-lateral">
+
+        <!--
+          [class.active] substitui btn.classList.add/remove('active').
+          (click) chama trocarAba() que atualiza this.abaAtiva no .ts.
+        -->
+        <button
+          class="botao-aba"
+          [class.active]="abaAtiva === 'dados'"
+          (click)="trocarAba('dados')"
+        >
+          Meus Dados
+        </button>
+
+        <button
+          class="botao-aba"
+          [class.active]="abaAtiva === 'favoritos'"
+          (click)="trocarAba('favoritos')"
+        >
+          Favoritos
+        </button>
+
+        <button
+          class="botao-aba"
+          [class.active]="abaAtiva === 'pedidos'"
+          (click)="trocarAba('pedidos')"
+        >
+          Pedidos
+        </button>
+
+      </nav>
+
+    </aside>
+
+    <!-- ── CONTEÚDO PRINCIPAL ─────────────────────────────────────────── -->
+    <main class="conteudo">
+
+      <!-- ABA: MEUS DADOS ──────────────────────────────────────────────── -->
+      <!--
+        [class.active] + CSS .conteudo-aba { display:none } / .active { display:block }
+        substitui toda a lógica de conteudosAbas.forEach + classList do JS.
+      -->
+      <section class="conteudo-aba" [class.active]="abaAtiva === 'dados'">
+
+        <div class="cabecalho-conteudo">
+          <h1>Meus Dados</h1>
+          <p>Gerencie suas informações pessoais.</p>
+        </div>
+
+        <div class="cartao">
+
+          <!-- Nome -->
+          <div class="grupo-input">
+            <label for="nome">Nome Completo</label>
+            <input
+              id="nome"
+              type="text"
+              placeholder="Digite seu nome"
+              [(ngModel)]="formNome"
+              name="nome"
+              [class.input-erro]="erros['nome']"
+            />
+            <!-- Mensagem de erro inline — substitui alert() e borderColor='red' -->
+            @if (erros['nome']) {
+              <span class="mensagem-erro">{{ erros['nome'] }}</span>
+            }
+          </div>
+
+          <!-- Email -->
+          <div class="grupo-input">
+            <label for="email">Email</label>
+            <input
+              id="email"
+              type="email"
+              placeholder="Digite seu email"
+              [(ngModel)]="formEmail"
+              name="email"
+              [class.input-erro]="erros['email']"
+            />
+            @if (erros['email']) {
+              <span class="mensagem-erro">{{ erros['email'] }}</span>
+            }
+          </div>
+
+          <!-- Telefone -->
+          <div class="grupo-input">
+            <label for="telefone">Telefone</label>
+            <input
+              id="telefone"
+              type="text"
+              placeholder="(00) 00000-0000"
+              [(ngModel)]="formTelefone"
+              name="telefone"
+              [class.input-erro]="erros['telefone']"
+            />
+            @if (erros['telefone']) {
+              <span class="mensagem-erro">{{ erros['telefone'] }}</span>
+            }
+          </div>
+
+          <!-- Senha -->
+          <div class="grupo-input">
+            <label for="senha">Senha</label>
+            <input
+              id="senha"
+              type="password"
+              placeholder="********"
+              [(ngModel)]="formSenha"
+              name="senha"
+              [class.input-erro]="erros['senha']"
+            />
+            @if (erros['senha']) {
+              <span class="mensagem-erro">{{ erros['senha'] }}</span>
+            }
+          </div>
+
+          <!--
+            (click) chama salvarDados() no .ts.
+            Substitui: botaoSalvar.addEventListener('click', ...)
+          -->
+          <button type="button" id="botao-salvar" (click)="salvarDados()">
+            Salvar Alterações
+          </button>
+
+        </div>
+
+      </section>
+
+      <!-- ABA: FAVORITOS ────────────────────────────────────────────────── -->
+      <section class="conteudo-aba" [class.active]="abaAtiva === 'favoritos'">
+
+        <div class="cabecalho-conteudo">
+          <h1>Favoritos</h1>
+          <p>Itens adicionados aos favoritos.</p>
+        </div>
+
+        <div class="grade-favoritos">
+
+          <!--
+            @for substitui os 3 <div class="cartao-favorito"> idênticos do HTML.
+            (click) chama toggleFavorito() — substitui cartao.classList.toggle('selected').
+            [class.selected] aplica a borda amarela — substitui cartao.style.borderColor.
+          -->
+          @for (favorito of favoritos; track favorito.nome) {
+            <div
+              class="cartao-favorito"
+              [class.selected]="favorito.selecionado"
+              (click)="toggleFavorito(favorito)"
+            >
+              <div class="imagem-favorito"></div>
+              <h3>{{ favorito.nome }}</h3>
+              <span>{{ favorito.categoria }}</span>
+            </div>
+          }
+
+        </div>
+
+      </section>
+
+      <!-- ABA: PEDIDOS ──────────────────────────────────────────────────── -->
+      <section class="conteudo-aba" [class.active]="abaAtiva === 'pedidos'">
+
+        <div class="cabecalho-conteudo">
+          <h1>Pedidos</h1>
+          <p>Acompanhe seus pedidos recentes.</p>
+        </div>
+
+        <div class="area-pedidos">
+
+          <!--
+            @for substitui os 3 <div class="cartao-pedido"> do HTML.
+            O hover de translateX(5px) foi movido para o CSS via :hover,
+            removendo os mouseenter/mouseleave do JS original.
+          -->
+          @for (pedido of pedidos; track pedido.numero) {
+            <div class="cartao-pedido">
+              <div>
+                <h3>Pedido {{ pedido.numero }}</h3>
+                <span>Realizado em {{ pedido.data }}</span>
+              </div>
+              <strong>{{ pedido.status }}</strong>
+            </div>
+          }
+
+        </div>
+
+      </section>
+
+    </main>
+  }
+
+  <!-- ── SEM LOGIN ─────────────────────────────────────────────────────── -->
+  <!--
+    Substitui: if (!usuarioLogado) { barraLateral.style.display='none'; ... }
+               else { naoLogado.style.display='none'; }
+    routerLink substitui: href="cadastro.html"
+  -->
+  @if (!usuarioLogado) {
+    <div class="nao-logado">
+      <h1>Faça login para continuar</h1>
+      <p>Entre ou crie uma conta para acessar seu perfil.</p>
+      <a routerLink="/cadastro" class="botao-cadastro">Criar Conta</a>
+    </div>
+  }
+
+</div>

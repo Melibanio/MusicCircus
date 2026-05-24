@@ -1,1 +1,232 @@
-<p>about works!</p>
+<!-- ════════════════════════════════════════════════════════
+     about.html — Music Circus | Sobre Nós  (Angular)
+     ════════════════════════════════════════════════════════ -->
+
+<!-- ── CABEÇALHO ──────────────────────────────────────── -->
+<header>
+  <a class="logo" href="#">
+    <span class="logo-dot"></span>Music <span>Circus</span>
+  </a>
+  <nav class="nav-links">
+    <a href="#sobre">Sobre</a>
+    <a href="#duvidas">Dúvidas</a>
+    <a href="#contato" class="nav-cta">Fale Conosco</a>
+  </nav>
+</header>
+
+<main>
+
+  <!-- ══════════════════════════════════════════════════
+       SEÇÃO 1 — SOBRE NÓS
+  ══════════════════════════════════════════════════ -->
+  <section id="sobre">
+    <div class="sobre-inner">
+
+      <div class="sobre-text reveal">
+        <div class="section-label">Sobre Nós</div>
+        <h1>Seu próximo<br>instrumento<br>começa <em>aqui.</em></h1>
+        <p>
+          A Music Circus nasceu da paixão de músicos que cansaram de
+          garimpar instrumento bom em lugar ruim. A gente sabe o que
+          você precisa — porque a gente também toca.
+        </p>
+        <p>
+          Aqui você encontra guitarras, baixos, teclados, baterias,
+          sopros e muito mais, com atendimento de quem entende do assunto
+          e preço justo pra você focar no que importa: tocar.
+        </p>
+        <div class="btn-group">
+          <a href="#contato" class="btn-primary">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            Fale com a gente
+          </a>
+          <a href="#duvidas" class="btn-ghost">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            Ver dúvidas
+          </a>
+        </div>
+      </div>
+
+      <div class="sobre-card reveal">
+        <div class="card-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--amarelo)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>
+          </svg>
+        </div>
+        <h3>Por que a Music Circus?</h3>
+        <p>
+          Mais de 500 produtos em estoque, entrega rápida pra todo o Brasil
+          e suporte de verdade antes e depois da compra.
+          Sem enrolação, sem papo de vendedor.
+        </p>
+        <div class="pill-row">
+          <span class="pill">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+            Guitarras
+          </span>
+          <span class="pill">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>
+            Baterias
+          </span>
+          <span class="pill">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="8" width="20" height="12" rx="2"/><line x1="7" y1="8" x2="7" y2="20"/><line x1="12" y1="8" x2="12" y2="20"/><line x1="17" y1="8" x2="17" y2="20"/></svg>
+            Teclados
+          </span>
+          <span class="pill">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3v10M8 7l4-4 4 4"/><path d="M8 21h8M12 17v4"/><path d="M5 13h14"/></svg>
+            Sopros
+          </span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="divisor"></div>
+
+  <!-- ══════════════════════════════════════════════════
+       SEÇÃO 2 — DÚVIDAS FREQUENTES
+  ══════════════════════════════════════════════════ -->
+  <section id="duvidas">
+    <div class="section-label reveal">Dúvidas Frequentes</div>
+    <h2 class="reveal">Perguntas <span>frequentes</span></h2>
+
+    <div class="accordion reveal">
+
+      <!-- Item 0 -->
+      <div class="acc-item" [class.open]="openIndex === 0">
+        <button class="acc-btn" [attr.aria-expanded]="openIndex === 0" (click)="toggleAccordion(0)">
+          <span class="acc-question">Vocês vendem para todo o Brasil?</span>
+          <span class="acc-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </span>
+        </button>
+        <div class="acc-body">
+          <p>Sim! Entregamos para qualquer estado do Brasil. O frete é calculado no checkout e trabalhamos com as principais transportadoras para garantir que seu instrumento chegue seguro e rápido.</p>
+        </div>
+      </div>
+
+      <!-- Item 1 -->
+      <div class="acc-item" [class.open]="openIndex === 1">
+        <button class="acc-btn" [attr.aria-expanded]="openIndex === 1" (click)="toggleAccordion(1)">
+          <span class="acc-question">Os instrumentos têm garantia?</span>
+          <span class="acc-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </span>
+        </button>
+        <div class="acc-body">
+          <p>Todos os produtos têm garantia de fábrica e suporte pós-venda da nossa equipe. Qualquer problema, é só entrar em contato que a gente resolve sem burocracia.</p>
+        </div>
+      </div>
+
+      <!-- Item 2 -->
+      <div class="acc-item" [class.open]="openIndex === 2">
+        <button class="acc-btn" [attr.aria-expanded]="openIndex === 2" (click)="toggleAccordion(2)">
+          <span class="acc-question">Posso parcelar minha compra?</span>
+          <span class="acc-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </span>
+        </button>
+        <div class="acc-body">
+          <p>Pode sim! Parcelamos em até 12x no cartão de crédito. Aceitamos também Pix (com desconto à vista), boleto e as principais bandeiras de cartão.</p>
+        </div>
+      </div>
+
+      <!-- Item 3 -->
+      <div class="acc-item" [class.open]="openIndex === 3">
+        <button class="acc-btn" [attr.aria-expanded]="openIndex === 3" (click)="toggleAccordion(3)">
+          <span class="acc-question">E se eu não gostar do produto?</span>
+          <span class="acc-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </span>
+        </button>
+        <div class="acc-body">
+          <p>Você tem 7 dias para troca ou devolução sem precisar justificar nada — é seu direito. Basta entrar em contato com a gente que organizamos tudo para você.</p>
+        </div>
+      </div>
+
+      <!-- Item 4 -->
+      <div class="acc-item" [class.open]="openIndex === 4">
+        <button class="acc-btn" [attr.aria-expanded]="openIndex === 4" (click)="toggleAccordion(4)">
+          <span class="acc-question">Vocês têm loja física?</span>
+          <span class="acc-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </span>
+        </button>
+        <div class="acc-body">
+          <p>Por enquanto somos 100% online, o que nos permite manter preços mais competitivos e um estoque bem maior. Mas se tiver dúvida antes de comprar, é só chamar no chat ou no formulário abaixo.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="divisor"></div>
+
+  <!-- ══════════════════════════════════════════════════
+       SEÇÃO 3 — FALE CONOSCO
+  ══════════════════════════════════════════════════ -->
+  <section id="contato">
+    <div class="section-label reveal">Fale Conosco</div>
+    <h2 class="reveal">Bora <span>conversar?</span></h2>
+    <p class="sub reveal">Dúvida sobre algum produto, pedido ou qualquer coisa? Manda mensagem — a gente responde de verdade, sem bot, sem enrolação.</p>
+
+    <div class="reveal">
+      <div class="form-grid">
+
+        <div class="form-group">
+          <label for="nome">Seu nome</label>
+          <input
+            type="text"
+            id="nome"
+            placeholder="Como você se chama?"
+            [(ngModel)]="nome"
+            [class.error]="nomeError"
+          />
+          <span class="field-msg">{{ nomeError }}</span>
+        </div>
+
+        <div class="form-group">
+          <label for="email">E-mail</label>
+          <input
+            type="email"
+            id="email"
+            placeholder="seu@email.com"
+            [(ngModel)]="email"
+            [class.error]="emailError"
+          />
+          <span class="field-msg">{{ emailError }}</span>
+        </div>
+
+        <div class="form-group full">
+          <label for="msg">Mensagem</label>
+          <textarea
+            id="msg"
+            placeholder="O que você quer falar com a gente?"
+            [(ngModel)]="msg"
+            [class.error]="msgError"
+          ></textarea>
+          <span class="field-msg">{{ msgError }}</span>
+        </div>
+
+      </div>
+
+      <button class="btn-send" (click)="submitForm()">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        Enviar Mensagem
+      </button>
+
+      <div class="feedback" id="feedback" [class.show]="feedbackVisible" *ngIf="feedbackVisible">
+        <svg class="icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--amarelo)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        <span>Mensagem enviada! Logo a gente te dá um retorno.</span>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ── RODAPÉ ──────────────────────────────────────────── -->
+<footer>
+  <strong>Music Circus</strong> &nbsp;·&nbsp; Feito com paixão por música &nbsp;
+  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="vertical-align:middle"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+</footer>

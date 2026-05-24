@@ -1,1 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
+/* Importar aqui porque afeta TODOS os componentes */
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap');
+
+:root {
+
+  --amarelo: #ffb700;
+  --preto: #0f0f0f;
+  --branco: #fff8e0;
+  --cinza: #2a2929;
+  --muted: #888;
+  --claro: #ffd000;
+
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--preto);
+  color: var(--branco);
+}

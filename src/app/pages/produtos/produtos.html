@@ -1,0 +1,91 @@
+<section class="produtos-page">
+  <h1 class="heading">Nossos <span>Produtos</span></h1>
+
+  <!-- Filtros de categoria -->
+  <div class="filtros">
+    <button
+      class="filtro-btn"
+      [class.ativo]="!categoriaSelecionada"
+      (click)="filtrar(null)">
+      Todos
+    </button>
+    @for (cat of categorias; track cat) {
+      <button
+        class="filtro-btn"
+        [class.ativo]="categoriaSelecionada === cat"
+        (click)="filtrar(cat)">
+        {{ cat }}
+      </button>
+    }
+  </div>
+
+  <!-- Mensagem de feedback ao adicionar ao carrinho -->
+  @if (mensagemCarrinho) {
+    <div class="toast-carrinho">
+      🛒 {{ mensagemCarrinho }}
+    </div>
+  }
+
+  <!-- Carregando -->
+  @if (carregando) {
+    <div class="carregando">
+      <p>Carregando produtos...</p>
+    </div>
+  }
+
+  <!-- Grade de produtos -->
+  @if (!carregando) {
+    <div class="produtos-grid">
+      @for (produto of produtosFiltrados; track produto.id) {
+        <div class="produto-card" [class.esgotado]="produto.discontinued">
+
+          <div class="imagem-container">
+            <img [src]="produto.imagem" [alt]="produto.nome">
+
+            @if (produto.isNew && !produto.discontinued) {
+              <span class="tag tag-novo">NOVO</span>
+            }
+            @if (produto.discontinued) {
+              <span class="tag tag-esgotado">ESGOTADO</span>
+            }
+
+            <button
+              class="btn-favorito"
+              (click)="toggleFavorito(produto)"
+              [title]="isFavorito(produto) ? 'Remover dos favoritos' : 'Adicionar aos favoritos'">
+              {{ isFavorito(produto) ? '❤️' : '🤍' }}
+            </button>
+          </div>
+
+          <div class="card-info">
+            <h3>{{ produto.nome }}</h3>
+            <p class="descricao">{{ produto.descricao }}</p>
+            <div class="precos">
+              <span class="preco-atual">{{ produto.preco | currency:'BRL' }}</span>
+              <span class="preco-original">{{ produto.precoOriginal | currency:'BRL' }}</span>
+            </div>
+            <button
+              class="btn-adicionar"
+              [class.desabilitado]="produto.discontinued"
+              [disabled]="produto.discontinued"
+              (click)="adicionarAoCarrinho(produto)">
+              @if (produto.discontinued) {
+                Indisponível
+              } @else {
+                Adicionar ao Carrinho
+              }
+            </button>
+          </div>
+
+        </div>
+      }
+    </div>
+  }
+
+  @if (!carregando && produtosFiltrados.length === 0) {
+    <div class="sem-produtos">
+      <p>Nenhum produto encontrado nesta categoria.</p>
+    </div>
+  }
+
+</section>

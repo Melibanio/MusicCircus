@@ -1,0 +1,99 @@
+<nav class="navegacao">
+
+    <div class="logo">
+        MUSIC CIRCUS
+    </div>
+
+    <div class="links-navegacao">
+        <a href="">Início</a>
+        <a href="">Sobre nós</a>
+        <a href="">Produtos</a>
+        <a href="">Perfil</a>
+        <a href="">Carrinho</a>
+    </div>
+
+    <button class="botao-navegacao">
+        Entrar
+    </button>
+
+</nav>
+
+<div class="principal">
+
+    <div class="lado-esquerdo">
+
+        <div class="conteudo-esquerdo">
+
+            <p class="boas-vindas">
+                Recuperação de acesso
+            </p>
+
+            <h1>
+                MUSIC<br>
+                CIRCUS
+            </h1>
+
+            <div class="linha"></div>
+
+            <p class="descricao">
+                Informe seu e-mail cadastrado para redefinir sua senha e voltar ao seu ritmo.
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="lado-direito">
+
+        <div class="formulario">
+
+            <h4>
+                RECUPERAR SENHA
+            </h4>
+
+            <h2>
+                Redefinir Acesso
+            </h2>
+
+            <p class="texto-formulario">
+                Digite seu e-mail para receber as instruções de recuperação.
+            </p>
+
+            <form [formGroup]="formulario">
+
+                <label for="email">
+                    E-mail
+                </label>
+
+                <input
+                    type="email"
+                    id="email"
+                    formControlName="email"
+                    placeholder="Digite seu e-mail"
+                >
+
+                <button
+                    type="submit"
+                    class="botao"
+                    (click)="recuperarSenha()"
+                >
+                    ENVIAR LINK
+                </button>
+
+            </form>
+
+            <p class="rodape-formulario">
+
+                Lembrou sua senha?
+
+                <a routerLink="/">
+                    Voltar para login
+                </a>
+
+            </p>
+
+        </div>
+
+    </div>
+
+</div>

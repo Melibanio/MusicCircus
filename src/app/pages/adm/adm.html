@@ -1,1 +1,387 @@
-<p>adm works!</p>
+<!--
+  adm.html — Music Circus (Angular)
+  ══════════════════════════════════════════════════════════════════
+  Conversões JS → Angular:
+
+  JS                                  Angular
+  ──────────────────────────────────────────────────────────────────
+  getElementById / querySelector      → referências via .ts
+  classList.add/remove('aberto')      → [class.aberto] / *ngIf
+  innerHTML com map()                 → @for no template
+  addEventListener('click')           → (click)="metodo()"
+  input.value                         → [(ngModel)] / formControlName
+  toast() manual                      → [class.visivel] no .ts
+  style.display = 'none/block'        → *ngIf / @if
+  localStorage                        → json-server via ProdutoService (HTTP)
+  filtros com filter() em array local → getter produtosFiltrados no .ts
+  ══════════════════════════════════════════════════════════════════
+-->
+
+<div class="adm-wrapper">
+
+  <!-- ══ SIDEBAR ══════════════════════════════════════════════════════════ -->
+  <aside class="sidebar">
+
+    <div class="sidebar-logo">
+      <i class="ri-music-2-line"></i>
+      <a routerLink="/"><span>Music<strong>Circus</strong></span></a>
+    </div>
+
+    <nav class="sidebar-nav">
+      <p class="nav-label">Gerenciar</p>
+
+      <a class="nav-item active">
+        <i class="ri-box-3-line"></i> Produtos
+      </a>
+
+      <a routerLink="/produtos" class="nav-item">
+        <i class="ri-store-2-line"></i> Ver Loja
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <i class="ri-shield-user-line"></i> Painel ADM
+    </div>
+
+  </aside>
+
+  <!-- ══ CONTEÚDO PRINCIPAL ═══════════════════════════════════════════════ -->
+  <main class="main">
+
+    <!-- TOPBAR -->
+    <header class="topbar">
+      <div class="topbar-title">
+        <h1>Gerenciador de Produtos</h1>
+        <!-- totalProdutos é um getter do .ts — substitui totalBadge.textContent -->
+        <span>{{ totalProdutos }}</span>
+      </div>
+      <!-- (click) substitui btnAbrirModal.addEventListener -->
+      <button class="btn-novo" (click)="abrirModalNovo()">
+        <i class="ri-add-line"></i> Novo Produto
+      </button>
+    </header>
+
+    <!-- FILTROS -->
+    <!--
+      [(ngModel)] substitui filtroCat.value, filtroBusca.value.
+      (ngModelChange) dispara o getter produtosFiltrados automaticamente.
+    -->
+    <section class="filtros">
+
+      <div class="filtro-grupo">
+        <label>Categoria</label>
+        <select [(ngModel)]="filtroCategoria" name="filtroCategoria">
+          <option value="">Todas</option>
+          @for (cat of categorias; track cat) {
+            <option [value]="cat">{{ cat }}</option>
+          }
+        </select>
+      </div>
+
+      <div class="filtro-grupo busca">
+        <label>Buscar</label>
+        <div class="input-icon">
+          <i class="ri-search-line"></i>
+          <input
+            type="text"
+            placeholder="Nome do produto..."
+            [(ngModel)]="filtroBusca"
+            name="filtroBusca"
+          />
+        </div>
+      </div>
+
+      <!-- (click) substitui btnLimpar.addEventListener -->
+      <button class="btn-limpar" (click)="limparFiltros()">
+        <i class="ri-refresh-line"></i> Limpar
+      </button>
+
+    </section>
+
+    <!-- TABELA -->
+    <section class="tabela-wrapper">
+
+      <!-- Estado: carregando -->
+      @if (carregando) {
+        <div class="tabela-vazia">
+          <i class="ri-loader-4-line"></i>
+          <p>Carregando produtos...</p>
+        </div>
+      }
+
+      <!-- Estado: erro de conexão -->
+      @else if (erroCarregamento) {
+        <div class="tabela-vazia">
+          <i class="ri-wifi-off-line"></i>
+          <p>Não foi possível conectar à API.<br>Verifique se o json-server está rodando na porta 3000.</p>
+          <button class="btn-novo" style="margin-top:1rem" (click)="carregarProdutos()">
+            <i class="ri-refresh-line"></i> Tentar novamente
+          </button>
+        </div>
+      }
+
+      <!-- Estado: tabela com dados -->
+      @else {
+        <table class="tabela">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Nome</th>
+              <th>Descrição</th>
+              <th>Categoria</th>
+              <th>Preço</th>
+              <th>Orig.</th>
+              <th>Status</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <!--
+              @for substitui o tabelaBody.innerHTML = filtrados.map(...) do JS.
+              produtosFiltrados é o getter do .ts que aplica busca + filtro de categoria.
+            -->
+            @for (produto of produtosFiltrados; track produto.id) {
+              <tr>
+                <td class="td-id">{{ produto.id }}</td>
+
+                <td class="td-nome">
+                  {{ produto.nome }}
+                  @if (produto.isNew) {
+                    <span class="tag-new">Novo</span>
+                  }
+                </td>
+
+                <td class="td-desc">{{ produto.descricao || '—' }}</td>
+
+                <td>
+                  <span class="tag-cat">{{ produto.categoria }}</span>
+                </td>
+
+                <td class="td-preco">
+                  {{ produto.preco | currency:'BRL':'symbol':'1.2-2' }}
+                </td>
+
+                <td class="td-orig">
+                  <s>{{ produto.precoOriginal | currency:'BRL':'symbol':'1.2-2' }}</s>
+                </td>
+
+                <td>
+                  @if (produto.discontinued) {
+                    <span class="tag-off">Descontinuado</span>
+                  } @else {
+                    <span class="tag-ativo">Ativo</span>
+                  }
+                </td>
+
+                <!-- (click) substituem os onclick="abrirEditar()" / onclick="confirmarExcluir()" do JS -->
+                <td>
+                  <div class="acoes">
+                    <button class="btn-editar"  title="Editar"  (click)="abrirEditar(produto)">
+                      <i class="ri-edit-line"></i>
+                    </button>
+                    <button class="btn-excluir" title="Excluir" (click)="abrirConfirmarExcluir(produto)">
+                      <i class="ri-delete-bin-6-line"></i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            }
+
+            <!-- Nenhum resultado -->
+            @empty {
+              <tr>
+                <td colspan="8">
+                  <div class="tabela-vazia">
+                    <i class="ri-inbox-2-line"></i>
+                    <p>Nenhum produto encontrado.</p>
+                  </div>
+                </td>
+              </tr>
+            }
+
+          </tbody>
+        </table>
+      }
+
+    </section>
+
+  </main>
+
+</div>
+
+<!-- ══ MODAL: ADICIONAR / EDITAR ════════════════════════════════════════════ -->
+<!--
+  [class.aberto] substitui modalOverlay.classList.add/remove('aberto').
+  (click) no overlay fecha o modal — substitui o addEventListener no JS.
+-->
+<div class="modal-overlay" [class.aberto]="modalAberto" (click)="fecharModal()">
+
+  <!--
+    $event.stopPropagation() impede que o clique dentro do modal
+    feche o overlay — substitui a checagem e.target === modalOverlay do JS.
+  -->
+  <div class="modal" (click)="$event.stopPropagation()">
+
+    <div class="modal-header">
+      <!-- Título muda dinamicamente via modoModal — substitui modalTitulo.textContent -->
+      <h2>{{ modoModal === 'novo' ? 'Novo Produto' : 'Editar Produto' }}</h2>
+      <button class="modal-fechar" (click)="fecharModal()">
+        <i class="ri-close-line"></i>
+      </button>
+    </div>
+
+    <!--
+      [formGroup] conecta o FormGroup do .ts ao template.
+      formControlName conecta cada campo — substitui getElementById + value.
+    -->
+    <div class="modal-body" [formGroup]="form">
+
+      <div class="form-row">
+
+        <!-- Categoria -->
+        <div class="form-group">
+          <label>Categoria <span>*</span></label>
+          <select formControlName="categoria" [class.erro]="campoInvalido('categoria')">
+            <option value="">Selecione...</option>
+            @for (cat of categorias; track cat) {
+              <option [value]="cat">{{ cat }}</option>
+            }
+          </select>
+          @if (campoInvalido('categoria')) {
+            <span class="msg-erro">Categoria é obrigatória.</span>
+          }
+        </div>
+
+        <!-- isNew -->
+        <div class="form-group form-group-check">
+          <label>Marcações</label>
+          <div class="checks">
+            <label class="check-label">
+              <input type="checkbox" formControlName="isNew" /> Produto Novo
+            </label>
+            <label class="check-label">
+              <input type="checkbox" formControlName="discontinued" /> Descontinuado
+            </label>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Nome -->
+      <div class="form-group">
+        <label>Nome do Produto <span>*</span></label>
+        <input
+          type="text"
+          formControlName="nome"
+          placeholder="Ex: Violão Strinberg SL200C"
+          [class.erro]="campoInvalido('nome')"
+        />
+        @if (campoInvalido('nome')) {
+          <span class="msg-erro">Nome obrigatório (mínimo 3 caracteres).</span>
+        }
+      </div>
+
+      <!-- Descrição -->
+      <div class="form-group">
+        <label>Descrição</label>
+        <input
+          type="text"
+          formControlName="descricao"
+          placeholder="Ex: Nylon cordas, cor preta"
+        />
+      </div>
+
+      <div class="form-row">
+
+        <!-- Preço -->
+        <div class="form-group">
+          <label>Preço (R$) <span>*</span></label>
+          <input
+            type="number"
+            formControlName="preco"
+            placeholder="Ex: 585.00"
+            step="0.01"
+            [class.erro]="campoInvalido('preco')"
+          />
+          @if (campoInvalido('preco')) {
+            <span class="msg-erro">Preço obrigatório e maior que zero.</span>
+          }
+        </div>
+
+        <!-- Preço original -->
+        <div class="form-group">
+          <label>Preço Original (R$) <span>*</span></label>
+          <input
+            type="number"
+            formControlName="precoOriginal"
+            placeholder="Ex: 650.00"
+            step="0.01"
+            [class.erro]="campoInvalido('precoOriginal')"
+          />
+          @if (campoInvalido('precoOriginal')) {
+            <span class="msg-erro">Preço original obrigatório.</span>
+          }
+        </div>
+
+      </div>
+
+      <!-- Imagem -->
+      <div class="form-group">
+        <label>Caminho da Imagem</label>
+        <input
+          type="text"
+          formControlName="imagem"
+          placeholder="Ex: IMG/violao.jpg"
+        />
+      </div>
+
+    </div>
+
+    <div class="modal-footer">
+      <button class="btn-cancelar" (click)="fecharModal()">Cancelar</button>
+      <!-- (click) chama salvar() que detecta modo novo/editar internamente -->
+      <button class="btn-salvar" (click)="salvar()">
+        <i class="ri-save-line"></i> Salvar
+      </button>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══ MODAL: CONFIRMAR EXCLUSÃO ════════════════════════════════════════════ -->
+<div class="modal-overlay" [class.aberto]="modalDeleteAberto" (click)="fecharModalDelete()">
+  <div class="modal modal-delete" (click)="$event.stopPropagation()">
+
+    <div class="delete-icon">
+      <i class="ri-delete-bin-6-line"></i>
+    </div>
+
+    <h2>Excluir produto?</h2>
+
+    <!-- produtoParaExcluir?.nome substitui deleteNomeProd.textContent -->
+    <p>"{{ produtoParaExcluir?.nome }}"</p>
+
+    <div class="modal-footer">
+      <button class="btn-cancelar" (click)="fecharModalDelete()">Cancelar</button>
+      <!-- (click) chama confirmarExclusao() — substitui btnDelConfirmar.addEventListener -->
+      <button class="btn-deletar" (click)="confirmarExclusao()">
+        <i class="ri-delete-bin-line"></i> Excluir
+      </button>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══ TOAST ═════════════════════════════════════════════════════════════════ -->
+<!--
+  [class.visivel] e [class.erro] substituem toastEl.classList.add('visivel'/'erro').
+  {{ toast.mensagem }} substitui toastEl.textContent.
+-->
+<div
+  class="toast"
+  [class.visivel]="toast.visivel"
+  [class.erro]="toast.erro"
+>
+  {{ toast.mensagem }}
+</div>

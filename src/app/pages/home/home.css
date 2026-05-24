@@ -1,0 +1,81 @@
+/*
+  home.component.css  —  Music Circus (Angular)
+  ==============================================
+  O CSS original (style.css) fica em src/styles.css como folha global.
+  Este arquivo contém APENAS os ajustes necessários para funcionar
+  no encapsulamento de estilos do Angular (ViewEncapsulation.Emulated).
+
+  Problema comum ao migrar:
+    No HTML puro, `header .icons` e `.icons-container .icons` convivem
+    sem conflito porque o seletor é resolvido pelo contexto do DOM.
+    No Angular com encapsulamento, o compilador adiciona atributos únicos
+    (_nghost / _ngcontent) e os seletores aninhados ainda funcionam —
+    mas qualquer seletor global precisa ficar em styles.css, não aqui.
+
+  Regra de ouro:
+    • styles.css  → regras que afetam a página inteira (reset, header, footer, etc.)
+    • home.component.css → sobrescritas e ajustes EXCLUSIVOS deste componente
+*/
+
+/* ── Botão desabilitado do formulário de contato ──────────────── */
+/* Angular adiciona o atributo [disabled]; o CSS precisa tratar isso */
+.contato form button[disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ── Correção: o botão "Adicione ao Carrinho" era <a> e virou <button> ─ */
+/* O CSS original estiliza `.image .icons a`, mas o cart-btn agora é <button> */
+.productos .box-container .box .image .icons button.cart-btn {
+  height: 5rem;
+  line-height: 5rem;
+  font-size: 1.6rem;
+  width: 100%;
+  background: var(--yellow);
+  color: var(--black);
+  border: none;
+  border-left: 0.1rem solid rgb(184, 156, 0);
+  border-right: 0.1rem solid rgb(184, 156, 0);
+  cursor: pointer;
+  text-transform: capitalize;
+  transition: 0.2s linear;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.productos .box-container .box .image .icons button.cart-btn:hover {
+  background: var(--sombra);
+}
+
+/* ── Carrossel: garante que o track não quebre o layout ───────── */
+/* No Angular o *ngFor renderiza os clones em tempo de execução;
+   overflow:hidden precisa estar no wrapper para evitar flash inicial */
+.caroussel .carousel {
+  overflow: hidden;
+}
+
+/* ── routerLinkActive: estilo para link ativo no menu ─────────── */
+header .navbar a.active {
+  color: var(--yellow);
+}
+
+/* ── Formulário: remove aparência nativa do <button type="submit"> ── */
+.contato form button[type='submit'].btn {
+  display: block;
+  width: 100%;
+  background: var(--yellow);
+  color: var(--black);
+  font-size: 1.7rem;
+  padding: 1.2rem;
+  border-radius: 5rem;
+  cursor: pointer;
+  border: none;
+  margin-top: 1rem;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  text-transform: capitalize;
+  transition: 0.2s linear;
+}
+
+.contato form button[type='submit'].btn:hover:not([disabled]) {
+  background: var(--sombra);
+  color: #fff;
+}

@@ -1,1 +1,271 @@
-<p>cart works!</p>
+<!-- Nicolle Lima -->
+
+<div class="main-container">
+
+  <!-- Breadcrumb -->
+  <div class="page-header">
+    <h1 class="page-title">Finalizar Compra</h1>
+    <div class="breadcrumb">
+      <span class="breadcrumb-active">Carrinho</span>
+      <span class="breadcrumb-arrow">→</span>
+      <span class="breadcrumb-item">Pagamento</span>
+      <span class="breadcrumb-arrow">→</span>
+      <span class="breadcrumb-item">Confirmação</span>
+    </div>
+  </div>
+
+  <!-- Grid principal -->
+  <div class="content-grid">
+
+    
+    <div class="left-column">
+
+      <!-- ITENS DO CARRINHO -->
+      <div class="cart-section">
+        <h2 class="section-title">Itens do Carrinho</h2>
+
+        <!-- Carrinho vazio -->
+        <div *ngIf="itens.length === 0" class="carrinho-vazio">
+          <p class="vazio-titulo">Seu carrinho está vazio 🎸</p>
+          <p class="vazio-sub">Adicione produtos para continuar</p>
+          <button class="btn-continue" (click)="continuarComprando()">Ver produtos</button>
+        </div>
+
+        <!-- Lista de itens -->
+        <div class="cart-items" *ngIf="itens.length > 0">
+          <div
+            class="cart-item"
+            *ngFor="let item of itens; trackBy: trackById"
+            [class.removendo]="removendoId === item.id"
+          >
+            <!-- Imagem -->
+            <div class="product-image-wrap">
+              <img [src]="item.imagem" [alt]="item.nome" class="product-img">
+            </div>
+
+            <!-- Detalhes -->
+            <div class="product-details">
+              <h3 class="product-name">{{ item.nome }}</h3>
+              <p class="product-price">{{ formatarMoeda(item.preco) }}</p>
+
+              <!-- Controle de quantidade -->
+              <div class="quantity-controls">
+                <button class="btn-quantity" (click)="diminuir(item.id)" [disabled]="item.quantidade <= 1">−</button>
+                <span class="quantity">{{ item.quantidade }}</span>
+                <button class="btn-quantity" (click)="aumentar(item.id)">+</button>
+              </div>
+            </div>
+
+            <!-- Ações -->
+            <div class="product-actions">
+              <button class="btn-delete" (click)="remover(item.id)" title="Remover item">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                  <path d="M6.66667 7.33333V11.3333" stroke="#F3DB53" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M9.33333 7.33333V11.3333" stroke="#F3DB53" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M12.6667 4V13.3333C12.6667 13.687 12.5262 14.0261 12.2761 14.2761C12.0261 14.5262 11.687 14.6667 11.3333 14.6667H4.66667C4.31304 14.6667 3.97391 14.5262 3.72386 14.2761C3.47381 14.0261 3.33333 13.687 3.33333 13.3333V4" stroke="#F3DB53" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M2 4H14" stroke="#F3DB53" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M5.33333 4V2.66667C5.33333 2.31304 5.47381 1.97391 5.72386 1.72386C5.97391 1.47381 6.31304 1.33333 6.66667 1.33333H9.33333C9.68696 1.33333 10.0261 1.47381 10.2761 1.72386C10.5262 1.97391 10.6667 2.31304 10.6667 2.66667V4" stroke="#F3DB53" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+              <p class="item-total">{{ formatarMoeda(item.preco * item.quantidade) }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- INFORMAÇÕES DE ENTREGA (Reactive Forms) -->
+      <div class="delivery-section" *ngIf="itens.length > 0">
+        <h2 class="section-title">Informações de Entrega</h2>
+
+        <form [formGroup]="entregaForm" class="delivery-form" (ngSubmit)="finalizarCompra()">
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Nome</label>
+              <input type="text" class="form-input" formControlName="nome" placeholder="Seu nome">
+              <span class="form-error" *ngIf="erro('nome')">{{ erro('nome') }}</span>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Sobrenome</label>
+              <input type="text" class="form-input" formControlName="sobrenome" placeholder="Seu sobrenome">
+              <span class="form-error" *ngIf="erro('sobrenome')">{{ erro('sobrenome') }}</span>
+            </div>
+          </div>
+
+          <div class="form-group full-width">
+            <label class="form-label">E-mail</label>
+            <input type="email" class="form-input" formControlName="email" placeholder="seu@email.com">
+            <span class="form-error" *ngIf="erro('email')">{{ erro('email') }}</span>
+          </div>
+
+          <div class="form-group full-width">
+            <label class="form-label">Telefone</label>
+            <input type="tel" class="form-input" formControlName="telefone" placeholder="(11) 98888-8888">
+            <span class="form-error" *ngIf="erro('telefone')">{{ erro('telefone') }}</span>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group small">
+              <label class="form-label">CEP</label>
+              <input type="text" class="form-input" formControlName="cep" placeholder="00000-000">
+              <span class="form-error" *ngIf="erro('cep')">{{ erro('cep') }}</span>
+            </div>
+            <div class="form-group large">
+              <label class="form-label">Endereço</label>
+              <input type="text" class="form-input" formControlName="endereco" placeholder="Rua, Av...">
+              <span class="form-error" *ngIf="erro('endereco')">{{ erro('endereco') }}</span>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group small">
+              <label class="form-label">Número</label>
+              <input type="text" class="form-input" formControlName="numero" placeholder="123">
+              <span class="form-error" *ngIf="erro('numero')">{{ erro('numero') }}</span>
+            </div>
+            <div class="form-group large">
+              <label class="form-label">Complemento</label>
+              <input type="text" class="form-input" formControlName="complemento" placeholder="Apto, Bloco...">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Cidade</label>
+              <input type="text" class="form-input" formControlName="cidade" placeholder="Sua cidade">
+              <span class="form-error" *ngIf="erro('cidade')">{{ erro('cidade') }}</span>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Estado</label>
+              <select class="form-input" formControlName="estado">
+                <option value="">Selecione</option>
+                <option *ngFor="let uf of estados" [value]="uf">{{ uf }}</option>
+              </select>
+              <span class="form-error" *ngIf="erro('estado')">{{ erro('estado') }}</span>
+            </div>
+          </div>
+
+        </form>
+      </div>
+
+      <!-- MÉTODO DE PAGAMENTO -->
+      <div class="payment-section" *ngIf="itens.length > 0">
+        <h2 class="section-title">Método de Pagamento</h2>
+        <div class="payment-options">
+
+          <div class="payment-option" [class.selected]="metodoPagamento === 'credit'" (click)="metodoPagamento = 'credit'">
+            <div class="radio-wrapper">
+              <input type="radio" name="payment" id="credit" [checked]="metodoPagamento === 'credit'" (change)="metodoPagamento = 'credit'">
+              <label for="credit">Cartão de Crédito</label>
+            </div>
+            <div class="card-icons" *ngIf="metodoPagamento === 'credit'">
+              <div class="card-icon"></div>
+              <div class="card-icon"></div>
+              <div class="card-icon"></div>
+            </div>
+          </div>
+
+          <div class="payment-option" [class.selected]="metodoPagamento === 'debit'" (click)="metodoPagamento = 'debit'">
+            <div class="radio-wrapper">
+              <input type="radio" name="payment" id="debit" [checked]="metodoPagamento === 'debit'" (change)="metodoPagamento = 'debit'">
+              <label for="debit">Cartão de Débito</label>
+            </div>
+          </div>
+
+          <div class="payment-option" [class.selected]="metodoPagamento === 'pix'" (click)="metodoPagamento = 'pix'">
+            <div class="radio-wrapper">
+              <input type="radio" name="payment" id="pix" [checked]="metodoPagamento === 'pix'" (change)="metodoPagamento = 'pix'">
+              <label for="pix">PIX</label>
+            </div>
+          </div>
+
+          <div class="payment-option" [class.selected]="metodoPagamento === 'boleto'" (click)="metodoPagamento = 'boleto'">
+            <div class="radio-wrapper">
+              <input type="radio" name="payment" id="boleto" [checked]="metodoPagamento === 'boleto'" (change)="metodoPagamento = 'boleto'">
+              <label for="boleto">Boleto Bancário</label>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div><!-- /left-column -->
+
+
+    <!-- ── COLUNA DIREITA — RESUMO ────────────────────────────── -->
+    <div class="right-column">
+      <div class="order-summary">
+        <h2 class="section-title">Resumo do Pedido</h2>
+
+        <div class="summary-details">
+          <div class="summary-row">
+            <span class="summary-label">Subtotal ({{ totalItens }} {{ totalItens === 1 ? 'item' : 'itens' }})</span>
+            <span class="summary-value">{{ formatarMoeda(subtotal) }}</span>
+          </div>
+          <div class="summary-row">
+            <span class="summary-label">Frete</span>
+            <span class="summary-value" [class.frete-gratis]="frete === 0">
+              {{ frete === 0 ? 'Grátis' : formatarMoeda(frete) }}
+            </span>
+          </div>
+          <div class="divider"></div>
+          <div class="summary-row total">
+            <span class="summary-label-bold">Total</span>
+            <span class="summary-value-bold">{{ formatarMoeda(total) }}</span>
+          </div>
+        </div>
+
+        <!-- Cupom -->
+        <div class="coupon-section">
+          <input
+            type="text"
+            class="coupon-input"
+            #cupomInput
+            placeholder="Código do cupom"
+            (keyup.enter)="aplicarCupom(cupomInput.value); cupomInput.value = ''"
+          >
+          <button class="btn-apply" (click)="aplicarCupom(cupomInput.value); cupomInput.value = ''">
+            Aplicar
+          </button>
+        </div>
+
+        <!-- Feedback do cupom -->
+        <p class="cupom-feedback"
+           *ngIf="cupomMensagem"
+           [class.cupom-valido]="cupomValido"
+           [class.cupom-invalido]="!cupomValido">
+          {{ cupomMensagem }}
+        </p>
+
+        <!-- Botões -->
+        <button
+          class="btn-checkout"
+          [disabled]="itens.length === 0"
+          (click)="finalizarCompra()">
+          Finalizar Compra
+        </button>
+
+        <button class="btn-continue" (click)="continuarComprando()">
+          Continuar Comprando
+        </button>
+
+        
+        <div class="delivery-estimate">
+          <h3 class="estimate-title">Entrega Estimada</h3>
+          <p class="estimate-days">5–7 dias úteis</p>
+        </div>
+
+        
+        <div class="secure-purchase">
+          <h3 class="secure-title">Compra Segura</h3>
+          <div class="security-icons">
+            <div class="security-icon"><span class="ssl-badge">SSL</span></div>
+            <div class="security-icon"><div class="lock-icon">🔒</div></div>
+          </div>
+        </div>
+
+      </div>
+    </div><!-- /right-column -->
+
+  </div><!-- /content-grid -->
+</div><!-- /main-container -->

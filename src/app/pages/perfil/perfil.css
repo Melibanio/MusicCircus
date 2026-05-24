@@ -1,0 +1,54 @@
+/*
+  perfil.css
+  ══════════════════════════════════════════════════════════════════
+  IMPORTANTE: O PerfilComponent.css original (reset, layout, botões,
+  sidebar, cards etc.) deve ir para src/styles.css como folha global,
+  pois o Angular encapsula estilos de componente com atributos únicos.
+
+  Este arquivo contém APENAS os estilos novos necessários pela conversão:
+
+  1. .input-erro      — borda vermelha quando há erro de validação
+                        (substitui input.style.borderColor = 'red' do JS)
+  2. .mensagem-erro   — texto de erro inline abaixo do campo
+                        (substitui os alert() do JS original)
+  3. .cartao-favorito.selected — borda amarela no favorito selecionado
+                        (substitui cartao.style.borderColor = '#ffd000' do JS)
+  4. .cartao-pedido:hover — translateX já estava no JS via mouseenter/mouseleave;
+                        movido para CSS puro (mais performático)
+  ══════════════════════════════════════════════════════════════════
+*/
+
+/* ── 1. Campo com erro de validação ───────────────────────────────────────── */
+/* Substitui: input.style.borderColor = 'red' */
+.grupo-input input.input-erro {
+  border-color: #e05252 !important;
+}
+
+/* ── 2. Mensagem de erro inline ───────────────────────────────────────────── */
+/* Substitui: alert('Nome inválido.'), alert('Email inválido.'), etc. */
+.mensagem-erro {
+  display: block;
+  margin-top: 6px;
+  font-size: 13px;
+  color: #e05252;
+  font-weight: 500;
+}
+
+/* ── 3. Favorito selecionado ──────────────────────────────────────────────── */
+/* Substitui: cartao.style.borderColor = '#ffd000' quando selected */
+.cartao-favorito.selected {
+  border-color: #ffd000;
+}
+
+/* ── 4. Hover nos pedidos via CSS puro ────────────────────────────────────── */
+/*
+  O JS original usava mouseenter/mouseleave para aplicar transform.
+  No Angular (e em geral) isso é melhor feito em CSS — menos código,
+  melhor performance, sem manipulação de DOM.
+  Substitui:
+    cartao.addEventListener('mouseenter', () => cartao.style.transform = 'translateX(5px)')
+    cartao.addEventListener('mouseleave', () => cartao.style.transform = 'translateX(0)')
+*/
+.cartao-pedido:hover {
+  transform: translateX(5px);
+}
