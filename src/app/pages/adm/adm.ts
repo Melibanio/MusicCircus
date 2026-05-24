@@ -1,4 +1,4 @@
-import { Component, OnInit }          from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule }                from '@angular/common';
 import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RouterLink }                  from '@angular/router';
@@ -62,6 +62,7 @@ export class Adm implements OnInit {
   constructor(
     private produtoService: ProdutoService,
     private fb: FormBuilder,
+    private cdr: ChangeDetectorRef,
   ) {}
 
   // ── Lifecycle ─────────────────────────────────────────────────────────────
@@ -119,11 +120,13 @@ export class Adm implements OnInit {
       next: (dados) => {
         this.produtos     = dados;
         this.carregando   = false;
+        this.cdr.detectChanges();
       },
       error: () => {
         this.carregando       = false;
         this.erroCarregamento = true;
         this.exibirToast('Erro ao carregar produtos. Verifique se o json-server está rodando.', true);
+        this.cdr.detectChanges();
       },
     });
   }
@@ -170,8 +173,9 @@ export class Adm implements OnInit {
           this.produtos.push(novo);
           this.fecharModal();
           this.exibirToast(`"${novo.nome}" adicionado com sucesso!`);
+          this.cdr.detectChanges();
         },
-        error: () => this.exibirToast('Erro ao adicionar produto.', true),
+        error: () => { this.exibirToast('Erro ao adicionar produto.', true); this.cdr.detectChanges(); },
       });
 
     } else {
@@ -184,8 +188,9 @@ export class Adm implements OnInit {
           if (idx !== -1) this.produtos[idx] = editado;
           this.fecharModal();
           this.exibirToast(`"${editado.nome}" atualizado com sucesso!`);
+          this.cdr.detectChanges();
         },
-        error: () => this.exibirToast('Erro ao editar produto.', true),
+        error: () => { this.exibirToast('Erro ao editar produto.', true); this.cdr.detectChanges(); },
       });
     }
   }
@@ -215,8 +220,9 @@ export class Adm implements OnInit {
         this.produtos          = this.produtos.filter(p => p.id !== id);
         this.fecharModalDelete();
         this.exibirToast(`"${nome}" excluído.`);
+        this.cdr.detectChanges();
       },
-      error: () => this.exibirToast('Erro ao excluir produto.', true),
+      error: () => { this.exibirToast('Erro ao excluir produto.', true); this.cdr.detectChanges(); },
     });
   }
 
@@ -232,8 +238,10 @@ export class Adm implements OnInit {
   exibirToast(mensagem: string, erro = false): void {
     if (this.toastTimer) clearTimeout(this.toastTimer);
     this.toast = { mensagem, erro, visivel: true };
+    this.cdr.detectChanges();
     this.toastTimer = setTimeout(() => {
       this.toast = { ...this.toast, visivel: false };
+      this.cdr.detectChanges();
     }, 2800);
   }
 }

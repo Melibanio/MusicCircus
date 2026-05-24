@@ -1,6 +1,6 @@
 
 import { Routes } from '@angular/router';
-import { Home } from './pages/home/home';
+import { HomeComponent as Home } from './pages/home/home';
 import { Login } from './pages/login/login';
 import { Cadastro } from './pages/cadastro/cadastro';
 import { Recuperar } from './pages/recuperar/recuperar';
@@ -17,10 +17,10 @@ export const routes: Routes = [
   { path: 'login',     component: Login },
   { path: 'cadastro',  component: Cadastro },
   { path: 'recuperar', component: Recuperar },
-  { path: 'carrinho',  component: Cart },
+  { path: 'cart',      component: Cart },
   { path: 'confirmacao', component: Confirmacao },
-  { path: 'produtos',  component: Produtos },
-  { path: 'sobre',     component: About },
+  { path: 'products',  component: Produtos },
+  { path: 'about',     component: About },
   { path: 'perfil',    component: Perfil },
   { path: 'adm',       component: Adm },
   { path: '**',        redirectTo: 'home' },
