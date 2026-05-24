@@ -61,32 +61,32 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
 
   // ── Dados: Categorias ────────────────────────────────────────────────────
   categorias: Categoria[] = [
-    { tipo: 'Instrumentos', nome: 'De Sopro',   imagem: '/public/IMG/sopro.png'      },
-    { tipo: 'Instrumentos', nome: 'De Cordas',  imagem: '/public/IMG/cordas.jpg'     },
-    { tipo: 'Instrumentos', nome: 'Percussão',  imagem: '/public/IMG/percussão.jpg'  },
+    { tipo: 'Instrumentos', nome: 'De Sopro',   imagem: '/IMG/sopro.png'      },
+    { tipo: 'Instrumentos', nome: 'De Cordas',  imagem: '/IMG/cordas.jpg'     },
+    { tipo: 'Instrumentos', nome: 'Percussão',  imagem: '/IMG/percussão.jpg'  },
   ];
 
   // ── Dados: Produtos ───────────────────────────────────────────────────────
   produtos: Produto[] = [
-    { id: 1, nome: 'Violão Elétrico Nylon Strinberg Flat SL200C MGS',                     preco: 585.00,   precoOriginal: 650.00,   desconto: '-10%', imagem: '/public/IMG/violão1.jpeg'   },
-    { id: 2, nome: 'Flauta Doce Tenor Yamaha Barroca YRT 304B II',                         preco: 702.90,   precoOriginal: 780.90,   desconto: '-10%', imagem: '/public/IMG/flauta1.jpeg'   },
-    { id: 3, nome: 'Guitarra Super Stratocaster Seizi Fun Budokan Vintage Daphne Blue',    preco: 1341.90,  precoOriginal: 1490.90,  desconto: '-10%', imagem: '/public/IMG/guitarra1.jpeg' },
-    { id: 4, nome: 'Violino 4/4 Vivace Mozart MO44S Fosco',                                preco: 585.00,   precoOriginal: 650.00,   desconto: '-10%', imagem: '/public/IMG/violino1.jpeg'  },
-    { id: 5, nome: 'Saxofone Tenor Eagle ST 503',                                           preco: 7609.95,  precoOriginal: 8455.50,  desconto: '-10%', imagem: '/public/IMG/saxofone1.jpeg' },
-    { id: 6, nome: 'Pandeiro 11" Contemporânea Fórmica Black Carlos Café 37PBCF',          preco: 769.50,   precoOriginal: 855.00,   desconto: '-10%', imagem: '/public/IMG/pandeiro1.jpeg' },
-    { id: 7, nome: 'Bateria eletrônica 7 Pads MXT MD200C',                                 preco: 2097.00,  precoOriginal: 2330.00,  desconto: '-10%', imagem: '/public/IMG/bateria1.jpeg'  },
-    { id: 8, nome: 'Asalato Tac Iniciante (1 Par)',                                         preco: 117.00,   precoOriginal: 130.00,   desconto: '-10%', imagem: '/public/IMG/assalato1.jpeg' },
-    { id: 9, nome: 'Gaita Diatônica Orleans Stone G Sol',                                   preco: 135.00,   precoOriginal: 150.00,   desconto: '-10%', imagem: '/public/IMG/gaita1.jpeg'    },
+    { id: 1, nome: 'Violão Elétrico Nylon Strinberg Flat SL200C MGS',                     preco: 585.00,   precoOriginal: 650.00,   desconto: '-10%', imagem: '/IMG/violão1.jpeg'   },
+    { id: 2, nome: 'Flauta Doce Tenor Yamaha Barroca YRT 304B II',                         preco: 702.90,   precoOriginal: 780.90,   desconto: '-10%', imagem: '/IMG/flauta1.jpeg'   },
+    { id: 3, nome: 'Guitarra Super Stratocaster Seizi Fun Budokan Vintage Daphne Blue',    preco: 1341.90,  precoOriginal: 1490.90,  desconto: '-10%', imagem: '/IMG/guitarra1.jpeg' },
+    { id: 4, nome: 'Violino 4/4 Vivace Mozart MO44S Fosco',                                preco: 585.00,   precoOriginal: 650.00,   desconto: '-10%', imagem: '/IMG/violino1.jpeg'  },
+    { id: 5, nome: 'Saxofone Tenor Eagle ST 503',                                           preco: 7609.95,  precoOriginal: 8455.50,  desconto: '-10%', imagem: '/IMG/saxofone1.jpeg' },
+    { id: 6, nome: 'Pandeiro 11" Contemporânea Fórmica Black Carlos Café 37PBCF',          preco: 769.50,   precoOriginal: 855.00,   desconto: '-10%', imagem: '/IMG/pandeiro1.jpeg' },
+    { id: 7, nome: 'Bateria eletrônica 7 Pads MXT MD200C',                                 preco: 2097.00,  precoOriginal: 2330.00,  desconto: '-10%', imagem: '/IMG/bateria1.jpeg'  },
+    { id: 8, nome: 'Asalato Tac Iniciante (1 Par)',                                         preco: 117.00,   precoOriginal: 130.00,   desconto: '-10%', imagem: '/IMG/assalato1.jpeg' },
+    { id: 9, nome: 'Gaita Diatônica Orleans Stone G Sol',                                   preco: 135.00,   precoOriginal: 150.00,   desconto: '-10%', imagem: '/IMG/gaita1.jpeg'    },
   ];
 
   // ── Dados: Cursos ─────────────────────────────────────────────────────────
   cursos: Curso[] = [
-    { titulo: 'Aulas de Bateria',  imagem: '/public/IMG/bateria.jpg',      link: 'https://www.schoolofrock.com.br/' },
-    { titulo: 'Aulas de Guitarra', imagem: '/public/IMG/guitar.jpg',       link: 'https://addmusica.com/'           },
-    { titulo: 'Aulas de Piano',    imagem: '/public/IMG/piano.jpg',        link: 'https://pianobello.com/'          },
-    { titulo: 'Aulas de Violino',  imagem: '/public/IMG/violino.jpg',      link: 'https://companhiadascordas.com.br/violino/' },
-    { titulo: 'Aulas de Saxofone', imagem: '/public/IMG/Blog-1024x683.jpg',link: 'https://studiolatitude.com.br/'  },
-    { titulo: 'Aulas de Flauta',   imagem: '/public/IMG/flauta.jpg',       link: 'https://companhiadascordas.com.br/violino/' },
+    { titulo: 'Aulas de Bateria',  imagem: '/IMG/bateria.jpg',      link: 'https://www.schoolofrock.com.br/' },
+    { titulo: 'Aulas de Guitarra', imagem: '/IMG/guitar.jpg',       link: 'https://addmusica.com/'           },
+    { titulo: 'Aulas de Piano',    imagem: '/IMG/piano.jpg',        link: 'https://pianobello.com/'          },
+    { titulo: 'Aulas de Violino',  imagem: '/IMG/violino.jpg',      link: 'https://companhiadascordas.com.br/violino/' },
+    { titulo: 'Aulas de Saxofone', imagem: '/IMG/Blog-1024x683.jpg',link: 'https://studiolatitude.com.br/'  },
+    { titulo: 'Aulas de Flauta',   imagem: '/IMG/flauta.jpg',       link: 'https://companhiadascordas.com.br/violino/' },
   ];
 
   // ── Dados para renderização do carrossel (inclui clones) ──────────────────
