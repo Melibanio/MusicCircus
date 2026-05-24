@@ -6,6 +6,9 @@ import {
   ViewChild,
   ElementRef,
 } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 
 // ─── Interfaces de dados ───────────────────────────────────────────────────────
 

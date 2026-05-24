@@ -3,23 +3,22 @@ import {FormBuilder,FormGroup,Validators,ReactiveFormsModule} from '@angular/for
 import { RouterLink } from '@angular/router';
 import { AbstractControl, ValidationErrors } from '@angular/forms';
 
-@Component({
-  selector: 'app-cadastro',
-
-  imports: [
-    ReactiveFormsModule,
-    RouterLink
-  ],
-
-  templateUrl: './cadastro.html',
-  styleUrl: './cadastro.css'
-})
-
 function senhasIguais(group: AbstractControl): ValidationErrors | null {
   const s1 = group.get('senha')?.value;
   const s2 = group.get('confirmarSenha')?.value;
   return s1 === s2 ? null : { senhasDiferentes: true };
 }
+
+@Component({
+  selector: 'app-cadastro',
+  standalone: true,
+  imports: [
+    ReactiveFormsModule,
+    RouterLink
+  ],
+  templateUrl: './cadastro.html',
+  styleUrl: './cadastro.css'
+})
 
 export class Cadastro {
 
@@ -28,28 +27,11 @@ export class Cadastro {
   constructor(private fb: FormBuilder) {
 
     this.formulario = this.fb.group({
-
-      nome: ['', [
-        Validators.required
-      ]],
-
-      email: ['', [
-        Validators.required,
-        Validators.email
-      ]],
-
-      senha: ['', [
-        Validators.required,
-        Validators.minLength(6)
-      ]],
-
-      confirmarSenha: ['', [
-        Validators.required
-      ]]}
-
-      { validators: senhasIguais });
-  
-    };
+      nome:           ['', [Validators.required]],
+      email:          ['', [Validators.required, Validators.email]],
+      senha:          ['', [Validators.required, Validators.minLength(6)]],
+      confirmarSenha: ['', [Validators.required]],
+    }, { validators: senhasIguais });
 
   }
 
