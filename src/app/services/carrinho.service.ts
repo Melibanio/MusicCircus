@@ -24,11 +24,7 @@ const CUPONS: Record<string, number | 'frete'> = {
 export class CarrinhoService {
 
   // ── estado central 
-  private itensSubject = new BehaviorSubject<ItemCarrinho[]>([
-    { id: 1, nome: 'Guitarra Epiphone Les Paul Tribute Plus - EBONY BURST', preco: 3790.50, imagem: 'img/guitarra-epiphone.jpg',  quantidade: 1 },
-    { id: 2, nome: 'Controlador KORG USB-MIDI - NANOKONTROL2',              preco:  519.32, imagem: 'img/controlador-korg.jpg',   quantidade: 1 },
-    { id: 3, nome: 'Kit Suporte Em X + Banqueta Para Teclado',              preco:  266.71, imagem: 'img/suporte-em-x.jpg',       quantidade: 1 },
-  ]);
+  private itensSubject = new BehaviorSubject<ItemCarrinho[]>([]);
 
   private descontoSubject   = new BehaviorSubject<number>(0);
   private freteGratisSubject = new BehaviorSubject<boolean>(false);
