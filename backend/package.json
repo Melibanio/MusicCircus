@@ -1,0 +1,10 @@
+{
+  "name": "music-circus-api",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "json-server db.json --port $PORT --host 0.0.0.0"
+  },
+  "dependencies": {
+    "json-server": "^1.0.0-beta.15"
+  }
+}
