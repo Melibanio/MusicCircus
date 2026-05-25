@@ -3,6 +3,12 @@
     --black: #111;
     --sombra: rgb(184, 156, 0);
     --letra: #bdbdb5;
+    --amarelo: #ffb700;
+    --claro:   #ffd000;
+    --preto:   #0f0f0f;
+    --branco:  #fff8e0;
+    --cinza:   #2a2929;
+    --muted:   #888;
 }
 
 /*Instruções Gerais do site*/

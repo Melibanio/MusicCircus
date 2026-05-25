@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { RouterLink } from '@angular/router';
 
 // ─── Interfaces de dados ───────────────────────────────────────────────────────
 
@@ -40,7 +40,7 @@ export interface Categoria {
   templateUrl: './home.html',
   styleUrls: ['./home.css'],
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterLink, RouterLinkActive]
+  imports: [CommonModule, FormsModule, RouterLink]
 })
 export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
 
