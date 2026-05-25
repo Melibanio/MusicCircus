@@ -1,49 +1,5 @@
-<!--
-  adm.html — Music Circus (Angular)
-  ══════════════════════════════════════════════════════════════════
-  Conversões JS → Angular:
-
-  JS                                  Angular
-  ──────────────────────────────────────────────────────────────────
-  getElementById / querySelector      → referências via .ts
-  classList.add/remove('aberto')      → [class.aberto] / *ngIf
-  innerHTML com map()                 → @for no template
-  addEventListener('click')           → (click)="metodo()"
-  input.value                         → [(ngModel)] / formControlName
-  toast() manual                      → [class.visivel] no .ts
-  style.display = 'none/block'        → *ngIf / @if
-  localStorage                        → json-server via ProdutoService (HTTP)
-  filtros com filter() em array local → getter produtosFiltrados no .ts
-  ══════════════════════════════════════════════════════════════════
--->
 
 <div class="adm-wrapper">
-
-  <!-- ══ SIDEBAR ══════════════════════════════════════════════════════════ -->
-  <aside class="sidebar">
-
-    <div class="sidebar-logo">
-      <i class="ri-music-2-line"></i>
-      <a routerLink="/"><span>Music<strong>Circus</strong></span></a>
-    </div>
-
-    <nav class="sidebar-nav">
-      <p class="nav-label">Gerenciar</p>
-
-      <a class="nav-item active">
-        <i class="ri-box-3-line"></i> Produtos
-      </a>
-
-      <a routerLink="/produtos" class="nav-item">
-        <i class="ri-store-2-line"></i> Ver Loja
-      </a>
-    </nav>
-
-    <div class="sidebar-footer">
-      <i class="ri-shield-user-line"></i> Painel ADM
-    </div>
-
-  </aside>
 
   <!-- ══ CONTEÚDO PRINCIPAL ═══════════════════════════════════════════════ -->
   <main class="main">
