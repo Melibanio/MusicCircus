@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../core/auth.service';
+import { FavoritosService } from '../../core/favoritos.service';
+import { Produto } from '../../core/produto.service';
 
 // ─── Interfaces de dados ──────────────────────────────────────────────────────
 
@@ -13,6 +15,7 @@ interface Pedido {
 }
 
 interface Favorito {
+  id: number;
   nome: string;
   categoria: string;
   imagem: string;
@@ -33,7 +36,11 @@ export class Perfil implements OnInit {
   // ── Estado de autenticação ────────────────────────────────────────────────
   usuarioLogado = false;
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private favoritosService: FavoritosService
+  ) {}
 
   ngOnInit(): void {
     // Tenta AuthService primeiro ('mc_usuario'); fallback para 'usuarioLogado' (chave do login da Melissa)
@@ -49,6 +56,14 @@ export class Perfil implements OnInit {
     this.formNome     = usuario.nome  || '';
     this.formEmail    = usuario.email || '';
     this.formTelefone = usuario.telefone || '';
+
+    this.favoritos = this.favoritosService.favoritos.map((p: Produto) => ({
+      id:         p.id!,
+      nome:       p.nome,
+      categoria:  p.categoria,
+      imagem:     p.imagem,
+      selecionado: false,
+    }));
   }
 
   sair(): void {
@@ -84,13 +99,8 @@ export class Perfil implements OnInit {
     { numero: '#94823', data: '15/05/2026', status: 'Processando'   },
   ];
 
-  // ── Favoritos ─────────────────────────────────────────────────────────────
-  // Substitui a lógica de cartao.classList.toggle('selected') do JS original.
-  favoritos: Favorito[] = [
-    { nome: 'Produto Favorito', categoria: 'Categoria', imagem: '', selecionado: false },
-    { nome: 'Produto Favorito', categoria: 'Categoria', imagem: '', selecionado: false },
-    { nome: 'Produto Favorito', categoria: 'Categoria', imagem: '', selecionado: false },
-  ];
+  // ── Favoritos — carregados do FavoritosService (localStorage) ───────────
+  favoritos: Favorito[] = [];
 
   // ── Troca de aba ─────────────────────────────────────────────────────────
   // Substitui: botoesAbas.forEach(botao => botao.addEventListener('click', ...))
