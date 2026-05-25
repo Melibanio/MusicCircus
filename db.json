@@ -115,7 +115,7 @@
       "preco": 2199.00,
       "precoOriginal": 2450.00,
       "categoria": "Cordas",
-      "imagem": "/IMG/baixo1.jpeg",
+      "imagem": "/IMG/baixo1.webp",
       "isNew": true,
       "discontinued": false
     },
@@ -126,7 +126,7 @@
       "preco": 389.00,
       "precoOriginal": 430.00,
       "categoria": "Cordas",
-      "imagem": "/IMG/ukulele1.jpeg",
+      "imagem": "/IMG/ukulele1.jpg",
       "isNew": false,
       "discontinued": false
     },
@@ -137,7 +137,7 @@
       "preco": 749.00,
       "precoOriginal": 830.00,
       "categoria": "Cordas",
-      "imagem": "/IMG/cavaquinho1.jpeg",
+      "imagem": "/IMG/cavaquinho1.webp",
       "isNew": false,
       "discontinued": false
     },
@@ -148,7 +148,7 @@
       "preco": 895.00,
       "precoOriginal": 990.00,
       "categoria": "Cordas",
-      "imagem": "/IMG/bandolim1.jpeg",
+      "imagem": "/IMG/cavaquinho1.webp",
       "isNew": false,
       "discontinued": false
     },
@@ -159,7 +159,7 @@
       "preco": 3299.00,
       "precoOriginal": 3650.00,
       "categoria": "Cordas",
-      "imagem": "/IMG/lespaul1.jpeg",
+      "imagem": "/IMG/guitarra-epiphone.jpg",
       "isNew": true,
       "discontinued": false
     },
@@ -170,7 +170,7 @@
       "preco": 1490.00,
       "precoOriginal": 1650.00,
       "categoria": "Cordas",
-      "imagem": "/IMG/violoncelo1.jpeg",
+      "imagem": "/IMG/violino1.jpeg",
       "isNew": false,
       "discontinued": false
     },
@@ -181,7 +181,7 @@
       "preco": 3850.00,
       "precoOriginal": 4280.00,
       "categoria": "Sopro",
-      "imagem": "/IMG/trompete1.jpeg",
+      "imagem": "/IMG/trompete1.webp",
       "isNew": false,
       "discontinued": false
     },
@@ -192,7 +192,7 @@
       "preco": 1199.00,
       "precoOriginal": 1330.00,
       "categoria": "Sopro",
-      "imagem": "/IMG/clarinete1.jpeg",
+      "imagem": "/IMG/clarinete1.webp",
       "isNew": false,
       "discontinued": false
     },
@@ -203,7 +203,7 @@
       "preco": 2250.00,
       "precoOriginal": 2500.00,
       "categoria": "Sopro",
-      "imagem": "/IMG/trombone1.jpeg",
+      "imagem": "/IMG/trombone1.webp",
       "isNew": false,
       "discontinued": false
     },
@@ -214,7 +214,7 @@
       "preco": 5990.00,
       "precoOriginal": 6650.00,
       "categoria": "Sopro",
-      "imagem": "/IMG/oboe1.jpeg",
+      "imagem": "/IMG/flauta1.jpeg",
       "isNew": false,
       "discontinued": false
     },
@@ -225,7 +225,7 @@
       "preco": 899.00,
       "precoOriginal": 995.00,
       "categoria": "Sopro",
-      "imagem": "/IMG/flautatransversal1.jpeg",
+      "imagem": "/IMG/flauta1.jpeg",
       "isNew": true,
       "discontinued": false
     },
@@ -236,7 +236,7 @@
       "preco": 12500.00,
       "precoOriginal": 13900.00,
       "categoria": "Sopro",
-      "imagem": "/IMG/tuba1.jpeg",
+      "imagem": "/IMG/trombone1.webp",
       "isNew": false,
       "discontinued": false
     },
@@ -247,7 +247,7 @@
       "preco": 5499.00,
       "precoOriginal": 6100.00,
       "categoria": "Percussão",
-      "imagem": "/IMG/bateriaacustica1.jpeg",
+      "imagem": "/IMG/bateria1.jpeg",
       "isNew": true,
       "discontinued": false
     },
@@ -258,161 +258,7 @@
       "preco": 649.00,
       "precoOriginal": 720.00,
       "categoria": "Percussão",
-      "imagem": "/IMG/cajon1.jpeg",
-      "isNew": false,
-      "discontinued": false
-    },
-    {
-      "id": 10,
-      "nome": "Baixo Elétrico Fender Squier Affinity Series Jazz Bass",
-      "descricao": "Corpo alder, escala rosewood 20 trastes",
-      "preco": 2199.00,
-      "precoOriginal": 2450.00,
-      "categoria": "Cordas",
-      "imagem": "/IMG/baixo1.jpeg",
-      "isNew": true,
-      "discontinued": false
-    },
-    {
-      "id": 11,
-      "nome": "Ukulele Soprano Kala KA-15S Mahogany",
-      "descricao": "Corpo mogno, afinadores cromados",
-      "preco": 389.00,
-      "precoOriginal": 430.00,
-      "categoria": "Cordas",
-      "imagem": "/IMG/ukulele1.jpeg",
-      "isNew": false,
-      "discontinued": false
-    },
-    {
-      "id": 12,
-      "nome": "Cavaquinho Rozini RX11ACF Elétrico",
-      "descricao": "Tampo spruce, captador piezo embutido",
-      "preco": 749.00,
-      "precoOriginal": 830.00,
-      "categoria": "Cordas",
-      "imagem": "/IMG/cavaquinho1.jpeg",
-      "isNew": false,
-      "discontinued": false
-    },
-    {
-      "id": 13,
-      "nome": "Bandolim Strinberg BM30 Natural",
-      "descricao": "Corpo oval, tampo abeto sólido",
-      "preco": 895.00,
-      "precoOriginal": 990.00,
-      "categoria": "Cordas",
-      "imagem": "/IMG/bandolim1.jpeg",
-      "isNew": false,
-      "discontinued": false
-    },
-    {
-      "id": 14,
-      "nome": "Guitarra Les Paul Epiphone Standard 60s Bourbon Burst",
-      "descricao": "Corpo mogno, captadores ProBucker",
-      "preco": 3299.00,
-      "precoOriginal": 3650.00,
-      "categoria": "Cordas",
-      "imagem": "/IMG/lespaul1.jpeg",
-      "isNew": true,
-      "discontinued": false
-    },
-    {
-      "id": 15,
-      "nome": "Violoncelo 4/4 Eagle CE200",
-      "descricao": "Tampo spruce, arco e breu inclusos",
-      "preco": 1490.00,
-      "precoOriginal": 1650.00,
-      "categoria": "Cordas",
-      "imagem": "/IMG/violoncelo1.jpeg",
-      "isNew": false,
-      "discontinued": false
-    },
-    {
-      "id": 16,
-      "nome": "Trompete Bb Yamaha YTR-2330 Laqueado",
-      "descricao": "Latão laqueado, 3 pistões monel",
-      "preco": 3850.00,
-      "precoOriginal": 4280.00,
-      "categoria": "Sopro",
-      "imagem": "/IMG/trompete1.jpeg",
-      "isNew": false,
-      "discontinued": false
-    },
-    {
-      "id": 17,
-      "nome": "Clarinete Bb Eagle CL04N Niquelado",
-      "descricao": "Corpo ABS, chaves niqueladas, estojo incluso",
-      "preco": 1199.00,
-      "precoOriginal": 1330.00,
-      "categoria": "Sopro",
-      "imagem": "/IMG/clarinete1.jpeg",
-      "isNew": false,
-      "discontinued": false
-    },
-    {
-      "id": 18,
-      "nome": "Trombone de Vara Eagle TB200 Laqueado",
-      "descricao": "Campana 8 pol, vara dupla em latão",
-      "preco": 2250.00,
-      "precoOriginal": 2500.00,
-      "categoria": "Sopro",
-      "imagem": "/IMG/trombone1.jpeg",
-      "isNew": false,
-      "discontinued": false
-    },
-    {
-      "id": 19,
-      "nome": "Oboé Yamaha YOB-241 Student",
-      "descricao": "Resina ABS, mecanismo semi-automático",
-      "preco": 5990.00,
-      "precoOriginal": 6650.00,
-      "categoria": "Sopro",
-      "imagem": "/IMG/oboe1.jpeg",
-      "isNew": false,
-      "discontinued": false
-    },
-    {
-      "id": 20,
-      "nome": "Flauta Transversal Eagle FL03N Niquelada",
-      "descricao": "Corpo niquelado, 16 chaves fechadas",
-      "preco": 899.00,
-      "precoOriginal": 995.00,
-      "categoria": "Sopro",
-      "imagem": "/IMG/flautatransversal1.jpeg",
-      "isNew": true,
-      "discontinued": false
-    },
-    {
-      "id": 21,
-      "nome": "Tuba BB Michael WTBB490N",
-      "descricao": "4 rotores, campana 18 pol, niquelada",
-      "preco": 12500.00,
-      "precoOriginal": 13900.00,
-      "categoria": "Sopro",
-      "imagem": "/IMG/tuba1.jpeg",
-      "isNew": false,
-      "discontinued": false
-    },
-    {
-      "id": 22,
-      "nome": "Bateria Acústica Pearl Export EXX725SPC",
-      "descricao": "5 peças, ferragens incluídas, acabamento Jet Black",
-      "preco": 5499.00,
-      "precoOriginal": 6100.00,
-      "categoria": "Percussão",
-      "imagem": "/IMG/bateriaacustica1.jpeg",
-      "isNew": true,
-      "discontinued": false
-    },
-    {
-      "id": 23,
-      "nome": "Cajón Profissional Contemporânea CAJPF1",
-      "descricao": "Madeira compensada, snare interno regulável",
-      "preco": 649.00,
-      "precoOriginal": 720.00,
-      "categoria": "Percussão",
-      "imagem": "/IMG/cajon1.jpeg",
+      "imagem": "/IMG/bateria1.jpeg",
       "isNew": false,
       "discontinued": false
     },
@@ -423,7 +269,7 @@
       "preco": 530.00,
       "precoOriginal": 590.00,
       "categoria": "Percussão",
-      "imagem": "/IMG/djembe1.jpeg",
+      "imagem": "/IMG/bateria1.jpeg",
       "isNew": false,
       "discontinued": false
     },
@@ -434,7 +280,7 @@
       "preco": 189.00,
       "precoOriginal": 210.00,
       "categoria": "Percussão",
-      "imagem": "/IMG/xilofone1.jpeg",
+      "imagem": "/IMG/bateria1.jpeg",
       "isNew": false,
       "discontinued": false
     },
@@ -445,7 +291,7 @@
       "preco": 1290.00,
       "precoOriginal": 1430.00,
       "categoria": "Percussão",
-      "imagem": "/IMG/conga1.jpeg",
+      "imagem": "/IMG/bateria1.jpeg",
       "isNew": false,
       "discontinued": false
     },
@@ -456,7 +302,7 @@
       "preco": 310.00,
       "precoOriginal": 345.00,
       "categoria": "Percussão",
-      "imagem": "/IMG/bongo1.jpeg",
+      "imagem": "/IMG/bateria1.jpeg",
       "isNew": false,
       "discontinued": false
     },
@@ -467,7 +313,7 @@
       "preco": 89.00,
       "precoOriginal": 99.00,
       "categoria": "Percussão",
-      "imagem": "/IMG/triangulo1.jpeg",
+      "imagem": "/IMG/bateria1.jpeg",
       "isNew": false,
       "discontinued": true
     },
@@ -478,7 +324,7 @@
       "preco": 2890.00,
       "precoOriginal": 3210.00,
       "categoria": "Percussão",
-      "imagem": "/IMG/pratos1.jpeg",
+      "imagem": "/IMG/bateria1.jpeg",
       "isNew": true,
       "discontinued": false
     }
