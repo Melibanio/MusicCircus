@@ -1,15 +1,51 @@
-<!-- header.html -->
-<nav class="navbar">
-  <a class="logo" routerLink="/">Music<span>Circus</span></a>
-  <ul class="nav-links">
-    <li><a routerLink="/">Home</a></li>
-    <li><a routerLink="/products">Produtos</a></li>
-    <li><a routerLink="/about">Sobre</a></li>
-  </ul>
-  <div class="nav-actions">
-    <a routerLink="/cart"><i class="fa-solid fa-cart-shopping"></i></a>
-    <a routerLink="/login" class="btn-login">
-      <i class="fa-solid fa-user"></i> Entrar
+<header class="mc-header" [class.scrolled]="isScrolled">
+
+  <!-- Linha decorativa superior em amarelo -->
+  <div class="mc-header__topbar"></div>
+
+  <nav class="mc-header__nav">
+
+    <!-- Logo -->
+    <a class="mc-header__logo" routerLink="/">
+      Music<span>Circus</span>
+      <i class="mc-header__logo-dot"></i>
     </a>
+
+    <!-- Links centrais -->
+    <ul class="mc-header__links">
+      <li><a routerLink="/"        routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Home</a></li>
+      <li><a routerLink="/products" routerLinkActive="active">Produtos</a></li>
+      <li><a routerLink="/about"   routerLinkActive="active">Sobre</a></li>
+    </ul>
+
+    <!-- Ações -->
+    <div class="mc-header__actions">
+      <a routerLink="/cart" class="mc-header__icon" title="Carrinho">
+        <i class="fa-solid fa-cart-shopping"></i>
+        <span class="mc-header__icon-label">Carrinho</span>
+      </a>
+      <a routerLink="/login" class="mc-header__btn-login">
+        <i class="fa-solid fa-user"></i>
+        <span>Entrar</span>
+      </a>
+    </div>
+
+    <!-- Hamburguer mobile -->
+    <button class="mc-header__hamburger" (click)="toggleMenu()" [class.open]="menuOpen" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+
+  </nav>
+
+  <!-- Drawer mobile -->
+  <div class="mc-header__drawer" [class.open]="menuOpen">
+    <ul>
+      <li><a routerLink="/"         (click)="closeMenu()">Home</a></li>
+      <li><a routerLink="/products" (click)="closeMenu()">Produtos</a></li>
+      <li><a routerLink="/about"    (click)="closeMenu()">Sobre</a></li>
+      <li><a routerLink="/cart"     (click)="closeMenu()">Carrinho</a></li>
+      <li><a routerLink="/login"    (click)="closeMenu()">Entrar</a></li>
+    </ul>
   </div>
-</nav>
+
+</header>
