@@ -148,7 +148,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
       this.carouselIndex = this.visibleCards;
       this.updateCarouselPosition(false);
     } else if (this.carouselIndex < this.visibleCards) {
-      this.carouselIndex = this.originalLength + this.visibleCards - 1;
+      this.carouselIndex = this.originalLength + this.visibleCards;
       this.updateCarouselPosition(false);
     }
   }
