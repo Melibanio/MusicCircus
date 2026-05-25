@@ -79,7 +79,7 @@
   justify-content: center;
   overflow: hidden;
   background:
-    url('/public/IMG/banner.png') center center / cover no-repeat,
+    url('/IMG/imagemini.jpg') center center / cover no-repeat,
     var(--preto);
 }
 
@@ -172,7 +172,9 @@
 /* ─── CATEGORIAS ────────────────────────────────────────────── */
 
 .categoria {
+  display: block;
   padding: 5rem 6vw;
+  background: var(--preto);
 }
 
 .categoria__grid {
@@ -285,6 +287,7 @@
 .sobre-nos {
   position: relative;
   padding: 6rem 6vw;
+  background: #0f0f0f;
   display: grid;
   grid-template-columns: 1fr auto;
   gap: 3rem;
