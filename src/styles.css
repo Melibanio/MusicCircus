@@ -11,8 +11,18 @@
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+html { overflow-x: hidden; }
+
 body {
   font-family: 'DM Sans', sans-serif;
   background: var(--preto);
   color: var(--branco);
+  overflow-x: hidden;
+}
+
+app-root,
+app-home,
+app-footer,
+app-header {
+  display: block;
 }

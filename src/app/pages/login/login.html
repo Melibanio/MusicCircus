@@ -98,12 +98,17 @@
                     </a>
                 </p>
 
+                @if (erro) {
+                <small class="erro">{{ erro }}</small>
+                }
+
                 <button
                     type="button"
                     class="botao"
                     (click)="validarLogin()"
+                    [disabled]="carregando"
                 >
-                    Entrar
+                    {{ carregando ? 'Entrando...' : 'Entrar' }}
                 </button>
 
             </form>

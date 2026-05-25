@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { AuthService } from '../../core/auth.service';
 
 // ─── Interfaces de dados ──────────────────────────────────────────────────────
 
@@ -27,12 +28,28 @@ interface Favorito {
   templateUrl: './perfil.html',
   styleUrls: ['./perfil.css'],
 })
-export class Perfil {
+export class Perfil implements OnInit {
 
-  // ── Estado de autenticação ────────────────────────────────────────────────
-  // Substitui: const usuarioLogado = false;
-  // Trocar para true (ou injetar AuthService) quando o login estiver pronto.
   usuarioLogado = false;
+
+  constructor(private authService: AuthService, private router: Router) {}
+
+  ngOnInit(): void {
+    const usuario = this.authService.getUsuarioLogado();
+    if (!usuario) {
+      this.router.navigate(['/login']);
+      return;
+    }
+    this.usuarioLogado = true;
+    this.nomePerfil = usuario.nome;
+    this.formNome = usuario.nome;
+    this.formEmail = usuario.email;
+  }
+
+  sair(): void {
+    this.authService.logout();
+    this.router.navigate(['/login']);
+  }
 
   // ── Aba ativa ─────────────────────────────────────────────────────────────
   // Substitui toda a lógica de botoesAbas.forEach + classList.add/remove.

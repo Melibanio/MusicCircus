@@ -1,4 +1,13 @@
 {
+  "usuarios": [
+    {
+      "id": 1,
+      "nome": "Administrador",
+      "email": "admin@musiccircus.com",
+      "senha": "admin123",
+      "perfil": "admin"
+    }
+  ],
   "produtos": [
     {
       "id": 1,

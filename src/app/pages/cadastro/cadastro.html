@@ -1,127 +1,103 @@
 <nav class="navegacao">
-
-    <div class="logo">
-        MUSIC CIRCUS
-    </div>
-
+    <div class="logo">MUSIC CIRCUS</div>
     <div class="links-navegacao">
-        <a href="">Início</a>
-        <a href="">Sobre nós</a>
-        <a href="">Produtos</a>
-        <a href="">Perfil</a>
-        <a href="">Carrinho</a>
+        <a routerLink="/">Início</a>
+        <a routerLink="/about">Sobre nós</a>
+        <a routerLink="/products">Produtos</a>
+        <a routerLink="/perfil">Perfil</a>
+        <a routerLink="/cart">Carrinho</a>
     </div>
-
-    <button class="botao-navegacao">
-        Entrar
-    </button>
-
+    <a routerLink="/login" class="botao-navegacao">Entrar</a>
 </nav>
 
 <div class="principal">
 
     <div class="lado-esquerdo">
-
         <div class="conteudo-esquerdo">
-
-            <p class="boas-vindas">
-                Faça parte da
-            </p>
-
-            <h1>
-                MUSIC<br>
-                CIRCUS
-            </h1>
-
+            <p class="boas-vindas">Faça parte da</p>
+            <h1>MUSIC<br>CIRCUS</h1>
             <div class="linha"></div>
-
             <p class="descricao">
                 Crie sua conta e descubra instrumentos, acessórios e experiências que acompanham o seu ritmo.
             </p>
-
         </div>
-
     </div>
 
     <div class="lado-direito">
-
         <div class="formulario">
 
-            <h4>
-                NOVO CADASTRO
-            </h4>
-
-            <h2>
-                Criar Conta
-            </h2>
-
+            <h4>NOVO CADASTRO</h4>
+            <h2>Criar Conta</h2>
             <p class="texto-formulario">
                 Preencha seus dados para acessar a experiência completa da Music Circus.
             </p>
 
-            <form>
+            <form [formGroup]="formulario" (ngSubmit)="cadastrar()">
 
-                <label for="nome">
-                    Nome
-                </label>
-
+                <label for="nome">Nome</label>
                 <input
                     type="text"
                     id="nome"
+                    formControlName="nome"
                     placeholder="Digite seu nome completo"
                 >
+                @if (campo('nome')?.invalid && campo('nome')?.touched) {
+                <small class="erro">Nome é obrigatório</small>
+                }
 
-                <label for="email">
-                    E-mail
-                </label>
-
+                <label for="email">E-mail</label>
                 <input
                     type="email"
                     id="email"
+                    formControlName="email"
                     placeholder="Digite seu e-mail"
                 >
+                @if (campo('email')?.invalid && campo('email')?.touched) {
+                <small class="erro">Digite um e-mail válido</small>
+                }
 
-                <label for="senha">
-                    Senha
-                </label>
-
+                <label for="senha">Senha</label>
                 <input
                     type="password"
                     id="senha"
+                    formControlName="senha"
                     placeholder="Crie uma senha"
                 >
+                @if (campo('senha')?.invalid && campo('senha')?.touched) {
+                <small class="erro">Mínimo 6 caracteres</small>
+                }
 
-                <label for="confirmarSenha">
-                    Confirmar senha
-                </label>
-
+                <label for="confirmarSenha">Confirmar senha</label>
                 <input
                     type="password"
                     id="confirmarSenha"
+                    formControlName="confirmarSenha"
                     placeholder="Confirme sua senha"
                 >
+                @if (formulario.hasError('senhasDiferentes') && campo('confirmarSenha')?.touched) {
+                <small class="erro">As senhas não coincidem</small>
+                }
+
+                @if (erro) {
+                <small class="erro">{{ erro }}</small>
+                }
 
                 <button
                     type="submit"
                     class="botao"
+                    [disabled]="carregando"
                 >
-                    CRIAR CONTA
+                    {{ carregando ? 'Criando conta...' : 'CRIAR CONTA' }}
                 </button>
 
             </form>
 
             <p class="rodape-formulario">
-
                 Já possui uma conta?
-
-                <a routerLink="/">
-                    Entrar
-                </a>
-
+                <a routerLink="/login">Entrar</a>
             </p>
 
         </div>
-
     </div>
 
 </div>

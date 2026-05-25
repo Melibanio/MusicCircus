@@ -68,15 +68,15 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
 
   // ── Dados: Produtos ───────────────────────────────────────────────────────
   produtos: Produto[] = [
-    { id: 1, nome: 'Violão Elétrico Nylon Strinberg Flat SL200C MGS',                     preco: 585.00,   precoOriginal: 650.00,   desconto: '-10%', imagem: '/public/IMG/violão1.jpeg'   },
-    { id: 2, nome: 'Flauta Doce Tenor Yamaha Barroca YRT 304B II',                         preco: 702.90,   precoOriginal: 780.90,   desconto: '-10%', imagem: '/public/IMG/flauta1.jpeg'   },
-    { id: 3, nome: 'Guitarra Super Stratocaster Seizi Fun Budokan Vintage Daphne Blue',    preco: 1341.90,  precoOriginal: 1490.90,  desconto: '-10%', imagem: '/public/IMG/guitarra1.jpeg' },
-    { id: 4, nome: 'Violino 4/4 Vivace Mozart MO44S Fosco',                                preco: 585.00,   precoOriginal: 650.00,   desconto: '-10%', imagem: '/public/IMG/violino1.jpeg'  },
-    { id: 5, nome: 'Saxofone Tenor Eagle ST 503',                                           preco: 7609.95,  precoOriginal: 8455.50,  desconto: '-10%', imagem: '/public/IMG/saxofone1.jpeg' },
-    { id: 6, nome: 'Pandeiro 11\" Contemporânea Fórmica Black Carlos Café 37PBCF',          preco: 769.50,   precoOriginal: 855.00,   desconto: '-10%', imagem: '/public/IMG/pandeiro1.jpeg' },
-    { id: 7, nome: 'Bateria eletrônica 7 Pads MXT MD200C',                                 preco: 2097.00,  precoOriginal: 2330.00,  desconto: '-10%', imagem: '/public/IMG/bateria1.jpeg'  },
-    { id: 8, nome: 'Asalato Tac Iniciante (1 Par)',                                         preco: 117.00,   precoOriginal: 130.00,   desconto: '-10%', imagem: '/public/IMG/assalato1.jpeg' },
-    { id: 9, nome: 'Gaita Diatônica Orleans Stone G Sol',                                   preco: 135.00,   precoOriginal: 150.00,   desconto: '-10%', imagem: '/public/IMG/gaita1.jpeg'    },
+    { id: 1, nome: 'Violão Elétrico Nylon Strinberg Flat SL200C MGS',                     preco: 585.00,   precoOriginal: 650.00,   desconto: '-10%', imagem: '/IMG/violão1.jpeg'   },
+    { id: 2, nome: 'Flauta Doce Tenor Yamaha Barroca YRT 304B II',                         preco: 702.90,   precoOriginal: 780.90,   desconto: '-10%', imagem: '/IMG/flauta1.jpeg'   },
+    { id: 3, nome: 'Guitarra Super Stratocaster Seizi Fun Budokan Vintage Daphne Blue',    preco: 1341.90,  precoOriginal: 1490.90,  desconto: '-10%', imagem: '/IMG/guitarra1.jpeg' },
+    { id: 4, nome: 'Violino 4/4 Vivace Mozart MO44S Fosco',                                preco: 585.00,   precoOriginal: 650.00,   desconto: '-10%', imagem: '/IMG/violino1.jpeg'  },
+    { id: 5, nome: 'Saxofone Tenor Eagle ST 503',                                           preco: 7609.95,  precoOriginal: 8455.50,  desconto: '-10%', imagem: '/IMG/saxofone1.jpeg' },
+    { id: 6, nome: 'Pandeiro 11\" Contemporânea Fórmica Black Carlos Café 37PBCF',          preco: 769.50,   precoOriginal: 855.00,   desconto: '-10%', imagem: '/IMG/pandeiro1.jpeg' },
+    { id: 7, nome: 'Bateria eletrônica 7 Pads MXT MD200C',                                 preco: 2097.00,  precoOriginal: 2330.00,  desconto: '-10%', imagem: '/IMG/bateria1.jpeg'  },
+    { id: 8, nome: 'Asalato Tac Iniciante (1 Par)',                                         preco: 117.00,   precoOriginal: 130.00,   desconto: '-10%', imagem: '/IMG/assalato1.jpeg' },
+    { id: 9, nome: 'Gaita Diatônica Orleans Stone G Sol',                                   preco: 135.00,   precoOriginal: 150.00,   desconto: '-10%', imagem: '/IMG/gaita1.jpeg'    },
   ];
 
   // ── Dados: Cursos ─────────────────────────────────────────────────────────
