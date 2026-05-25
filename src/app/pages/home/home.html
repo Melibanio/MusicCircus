@@ -1,86 +1,81 @@
 <!-- ═══════════════════════════════════════════════════════
-     home.component.html  —  Music Circus (Angular)
-     Convertido de HTML puro para sintaxe Angular:
-       • Diretivas estruturais: *ngFor, *ngIf
-       • Event binding: (click), (ngSubmit)
-       • Property binding: [src], [href]
-       • Two-way binding: [(ngModel)]
-       • ViewChild: #carouselTrack referenciado no .ts
+     home.html  —  Music Circus (Angular) — Layout Renovado
      ═══════════════════════════════════════════════════════ -->
 
 
 <!-- ── BANNER ─────────────────────────────────────────────── -->
-<section class="home" id="home">
-  <div class="content">
-    <h3>Instrumentos de Cordas</h3>
-    <span>O violão mais famoso voltou pra loja!</span>
-    <p>
+<section class="banner" id="home">
+  <div class="banner__overlay"></div>
+  <div class="banner__content">
+    <span class="banner__eyebrow">Instrumentos de Cordas</span>
+    <h1 class="banner__title">
+      O violão mais<br>
+      <em>famoso</em> voltou<br>
+      pra loja!
+    </h1>
+    <p class="banner__sub">
       Porque cada instrumento tem seu som, um papel e uma personalidade
       completamente única! Com qual instrumento gostaria de mostrar sua canção?
     </p>
-    <!-- routerLink aponta para a seção de produtos (pode ser ajustado) -->
-    <a routerLink="/" fragment="productos" class="btn">Confira!</a>
+    <a class="btn banner__btn" (click)="scrollTo('productos')">Confira!</a>
   </div>
 </section>
 
 
 <!-- ── CATEGORIAS ─────────────────────────────────────────── -->
-
 <section class="categoria" id="categoria">
-  <div class="box" *ngFor="let cat of categorias">
-    <!-- [src] e [alt] recebem os valores do objeto via property binding -->
-    <img [src]="cat.imagem" [alt]="cat.nome" />
-    <div class="content">
-      <span>{{ cat.tipo }}</span>
-      <h3>{{ cat.nome }}</h3>
-      <a href="#" class="btn">Conferir</a>
+  <h2 class="section-heading">Nossas <span>Categorias</span></h2>
+  <div class="categoria__grid">
+    <div class="categoria__box" *ngFor="let cat of categorias">
+      <div class="categoria__img-wrap">
+        <img [src]="cat.imagem" [alt]="cat.nome" />
+      </div>
+      <div class="categoria__info">
+        <span class="categoria__tipo">{{ cat.tipo }}</span>
+        <h3 class="categoria__nome">{{ cat.nome }}</h3>
+        <a href="#" class="btn btn--sm">Conferir</a>
+      </div>
     </div>
   </div>
 </section>
 
 
 <!-- ── INFORMAÇÕES / ÍCONES ───────────────────────────────── -->
-<section class="icons-container">
-
-  <div class="icons">
+<section class="beneficios">
+  <div class="beneficios__item">
     <i class="fas fa-shipping-fast"></i>
-    <div class="info">
+    <div>
       <h3>Envio Gratis</h3>
       <span>para todos os pedidos</span>
     </div>
   </div>
-
-  <div class="icons">
+  <div class="beneficios__item">
     <i class="fas fa-money-check"></i>
-    <div class="info">
+    <div>
       <h3>Parcelamento</h3>
       <span>em até 10x no cartão de crédito</span>
     </div>
   </div>
-
-  <div class="icons">
+  <div class="beneficios__item">
     <i class="fas fa-donate"></i>
-    <div class="info">
+    <div>
       <h3>Com desconto</h3>
       <span>10% off no pix/boleto</span>
     </div>
   </div>
-
-  <div class="icons">
+  <div class="beneficios__item">
     <i class="fas fa-certificate"></i>
-    <div class="info">
+    <div>
       <h3>Precedência</h3>
       <span>Revenda autorizada</span>
     </div>
   </div>
-
 </section>
 
 
 <!-- ── PRODUTOS ───────────────────────────────────────────── -->
-
 <section class="productos" id="productos">
-  <h1 class="heading">Novos <span>Produtos</span></h1>
+  <h1 class="heading">Produtos <span>Favoritos</span></h1>
 
   <div class="box-container">
     <div class="box" *ngFor="let produto of produtos">
@@ -90,9 +85,8 @@
         <img [src]="produto.imagem" [alt]="produto.nome" />
 
         <div class="icons">
-          <a href="#" class="fas fa-heart"  title="Favoritar"></a>
+          <a href="#" class="fas fa-heart" title="Favoritar"></a>
 
-          <!-- (click) Angular no lugar de onclick="addToCart(...)" do HTML original -->
           <button class="cart-btn" (click)="addToCart(produto)">
             Adicione ao Carrinho
           </button>
@@ -104,7 +98,6 @@
       <div class="content">
         <h3>{{ produto.nome }}</h3>
         <div class="preço">
-          <!-- formatarPreco() é um método do .ts que usa Intl para formatar em R$ -->
           {{ formatarPreco(produto.preco) }}
           <span>{{ formatarPreco(produto.precoOriginal) }}</span>
         </div>
@@ -115,22 +108,14 @@
 
 
 <!-- ── CARROSSEL DE CURSOS ────────────────────────────────── -->
-
 <section class="caroussel" id="cursos">
   <h1 class="heading">Cursos para <span>Aprender</span></h1>
 
   <div class="carousel-wrapper">
-    <!-- Botão anterior -->
     <button class="carousel-btn prev" (click)="carouselPrev()">⬅</button>
 
     <div class="carousel">
-      <!-- #carouselTrack: referência para o ViewChild no .ts -->
       <div class="carousel-track" #carouselTrack>
-
-        <!--
-          *ngFor sobre cursosCarrossel (array com clones já inseridos pelo buildCarouselData()).
-          [href] e [src] recebem os valores do objeto Curso.
-        -->
         <a
           class="card"
           *ngFor="let curso of cursosCarrossel"
@@ -141,70 +126,94 @@
           <img [src]="curso.imagem" [alt]="curso.titulo" />
           <span class="card-title">{{ curso.titulo }}</span>
         </a>
-
       </div>
     </div>
 
-    <!-- Botão próximo -->
     <button class="carousel-btn next" (click)="carouselNext()">➡</button>
   </div>
 </section>
 
 
+<!-- ── SOBRE NÓS ──────────────────────────────────────────── -->
+<section class="sobre-nos" id="sobre">
+  <div class="sobre-nos__deco" aria-hidden="true"></div>
+  <div class="sobre-nos__content">
+    <span class="sobre-nos__label">Quem somos</span>
+    <h2 class="sobre-nos__title">A paixão pela música<br>em cada detalhe</h2>
+    <p class="sobre-nos__text">
+      A Music Circus nasceu da paixão de músicos que cansaram de garimpar
+      instrumento bom em lugar ruim. Aqui você encontra curadoria especializada,
+      atendimento humano e os melhores instrumentos para o seu talento.
+    </p>
+    <a routerLink="/about" class="btn btn--outline">Conheça nossa história</a>
+  </div>
+  <div class="sobre-nos__visual" aria-hidden="true">
+    <div class="sobre-nos__note">♪</div>
+    <div class="sobre-nos__note sobre-nos__note--2">♫</div>
+    <div class="sobre-nos__note sobre-nos__note--3">♩</div>
+  </div>
+</section>
+
+
 <!-- ── CONTATO ────────────────────────────────────────────── -->
-<!--
-  <form> com (ngSubmit) no lugar de action="".
-  [(ngModel)] substitui os value="" dos inputs — two-way binding.
-  Cada campo atualiza a propriedade correspondente no .ts em tempo real.
-  IMPORTANTE: FormsModule precisa estar importado no AppModule para ngModel funcionar.
--->
 <section class="contato" id="contato">
   <h1 class="heading">Fale <span>Conosco</span></h1>
 
   <div class="row">
-    <form (ngSubmit)="onContatoSubmit()" #contatoForm="ngForm">
+    <form (ngSubmit)="onContatoSubmit()" #contatoForm="ngForm" class="contato__form">
 
-      <input
-        type="text"
-        placeholder="Nome *"
-        class="box"
-        [(ngModel)]="contatoNome"
-        name="nome"
-        required
-      />
+      <div class="form-group">
+        <label for="nome">Nome *</label>
+        <input
+          id="nome"
+          type="text"
+          placeholder="Seu nome completo"
+          [(ngModel)]="contatoNome"
+          name="nome"
+          required
+        />
+      </div>
 
-      <input
-        type="email"
-        placeholder="E-mail *"
-        class="box"
-        [(ngModel)]="contatoEmail"
-        name="email"
-        required
-        email
-      />
+      <div class="form-group">
+        <label for="email">E-mail *</label>
+        <input
+          id="email"
+          type="email"
+          placeholder="seu@email.com"
+          [(ngModel)]="contatoEmail"
+          name="email"
+          required
+          email
+        />
+      </div>
 
-      <input
-        type="tel"
-        placeholder="Telefone"
-        class="box"
-        [(ngModel)]="contatoTelefone"
-        name="telefone"
-      />
+      <div class="form-group">
+        <label for="telefone">Telefone</label>
+        <input
+          id="telefone"
+          type="tel"
+          placeholder="(00) 00000-0000"
+          [(ngModel)]="contatoTelefone"
+          name="telefone"
+        />
+      </div>
 
-      <textarea
-        class="box"
-        placeholder="Mensagem *"
-        cols="30"
-        rows="10"
-        [(ngModel)]="contatoMensagem"
-        name="mensagem"
-        required
-      ></textarea>
+      <div class="form-group">
+        <label for="mensagem">Mensagem *</label>
+        <textarea
+          id="mensagem"
+          placeholder="Como podemos te ajudar?"
+          cols="30"
+          rows="6"
+          [(ngModel)]="contatoMensagem"
+          name="mensagem"
+          required
+        ></textarea>
+      </div>
 
-      <!-- [disabled] desabilita o botão se o formulário for inválido -->
       <button
         type="submit"
-        class="btn"
+        class="btn btn--full"
         [disabled]="contatoForm.invalid"
       >
         Enviar mensagem
@@ -215,52 +224,5 @@
     <div class="image">
       <img src="/public/IMG/contato.jpg" alt="Contato Music Circus" />
     </div>
-  </div>
-</section>
-
-
-<!-- ── RODAPÉ ─────────────────────────────────────────────── -->
-<section class="footer">
-  <div class="box-container">
-
-    <div class="box">
-      <h3>Informações</h3>
-      <a routerLink="/">Home</a>
-      <a routerLink="/sobre">Sobre Nós</a>
-      <a routerLink="/" fragment="productos">Produtos</a>
-      <a routerLink="/" fragment="cursos">Cursos</a>
-      <a routerLink="/atendimento">Atendimento</a>
-    </div>
-
-    <div class="box">
-      <h3>Sua Área</h3>
-      <a routerLink="/perfil">Minha Conta</a>
-      <a routerLink="/pedidos">Meus Pedidos</a>
-      <a routerLink="/perfil" fragment="favoritos">Meus Favoritos</a>
-    </div>
-
-    <div class="box">
-      <h3>Redes Sociais</h3>
-      <a href="#">Instagram</a>
-      <a href="#">Facebook</a>
-      <a href="#">Whatsapp</a>
-      <a href="#">Endereços</a>
-    </div>
-
-    <div class="box">
-      <h3>Contatos</h3>
-      <a href="tel:+5599999999">+55 99999-9999</a>
-      <a href="tel:+5556220922">+55 5622-0922</a>
-      <a href="mailto:atendimento@musiccircus.com">atendimento@musiccircus.com</a>
-      <img src="/IMG/pagamentos.png" alt="Formas de pagamento" />
-    </div>
-
-  </div>
-
-  <div class="creditos">
-    Criado por
-    <span>Melissa, Laura, Nicolle, Marcos, Murilo, Estella e Oswaldo
-      — Turma STADSCAS2NB</span>
-    — @SENAC 2026 | Todos direitos reservados
   </div>
 </section>
