@@ -28,9 +28,24 @@ interface Favorito {
   templateUrl: './perfil.html',
   styleUrls: ['./perfil.css'],
 })
-export class Perfil implements OnInit {
+export class Perfil implements OnInit {  // ← adicionar implements OnInit
 
-  usuarioLogado = false;
+  ngOnInit(): void {
+    const salvo = localStorage.getItem('usuarioLogado');
+    if (salvo) {
+      const usuario = JSON.parse(salvo);
+      this.usuarioLogado = true;
+      this.nomePerfil   = usuario.nome  || '';
+      this.formNome     = usuario.nome  || '';
+      this.formEmail    = usuario.email || '';
+      this.formTelefone = usuario.telefone || '';
+    }
+  }
+
+  // ── Estado de autenticação ────────────────────────────────────────────────
+  // Substitui: const usuarioLogado = false;
+  // Trocar para true (ou injetar AuthService) quando o login estiver pronto.
+  usuarioLogado = true;
 
   constructor(private authService: AuthService, private router: Router) {}
 
