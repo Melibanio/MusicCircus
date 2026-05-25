@@ -1,3 +1,7 @@
+// ══ O GERENTE DE LOJA — O Componente de Produtos ═════════════════════════════
+// Coordena tudo: busca os dados, aplica filtros, delega ao carrinho e favoritos.
+// Não faz as tarefas sozinho — injeta os 3 serviços e os usa no momento certo.
+
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CurrencyPipe } from '@angular/common';
 import { ProdutoService, Produto } from '../../core/produto.service';
@@ -24,6 +28,8 @@ export class Produtos implements OnInit {
     private cdr: ChangeDetectorRef
   ) {}
 
+  // ── Página abre → pede a lista ao ProdutoService ──
+  // [Requisito] Listagem via ProdutoService — busca todos os produtos ao abrir a página
   ngOnInit(): void {
     this.produtoService.listar().subscribe({
       next: (dados) => {
@@ -38,6 +44,8 @@ export class Produtos implements OnInit {
     });
   }
 
+  // ── Usuário clica no filtro → recalcula automaticamente via Array.filter() ──
+  // [Requisito] Filtro por categoria — retorna todos se nenhum selecionado, ou filtra pelo nome da categoria
   get produtosFiltrados(): Produto[] {
     if (!this.categoriaSelecionada) return this.produtos;
     return this.produtos.filter(p => p.categoria === this.categoriaSelecionada);
@@ -47,14 +55,19 @@ export class Produtos implements OnInit {
     this.categoriaSelecionada = categoria;
   }
 
+  // ── Usuário clica no coração → delega ao FavoritosService (localStorage) ──
+  // [Requisito] Botão favoritar — verifica se o produto já está nos favoritos (coração cheio/vazio)
   isFavorito(produto: Produto): boolean {
     return this.favoritosService.isFavorito(produto.id!);
   }
 
+  // [Requisito] Botão favoritar — adiciona ou remove dos favoritos via FavoritosService
   toggleFavorito(produto: Produto): void {
     this.favoritosService.toggle(produto);
   }
 
+  // ── Usuário clica em Adicionar → verifica esgotado, delega ao CarrinhoService, ativa toast 3s ──
+  // [Requisito] Botão Adicionar — chama CarrinhoService.adicionar(); bloqueia se produto estiver esgotado
   adicionarAoCarrinho(produto: Produto): void {
     if (produto.discontinued || produto.id === undefined) return;
     this.carrinhoService.adicionar({ id: produto.id, nome: produto.nome, preco: produto.preco, imagem: produto.imagem });

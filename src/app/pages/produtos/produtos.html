@@ -1,7 +1,11 @@
+<!-- ══ A VITRINE DA LOJA — O Template HTML ═══════════════════════════════════
+     Exibe o que o gerente (produtos.ts) preparou. Não inventa nada —
+     cada {{ }} vem do componente, cada (click) chama um método do componente.
+══════════════════════════════════════════════════════════════════════════════ -->
 <section class="produtos-page">
   <h1 class="heading">Nossos <span>Produtos</span></h1>
 
-  <!-- Filtros de categoria -->
+  <!-- [Requisito] Filtro por categoria (Cordas, Percussão, Sopro) como botões no topo -->
   <div class="filtros">
     <button
       class="filtro-btn"
@@ -19,7 +23,7 @@
     }
   </div>
 
-  <!-- Mensagem de feedback ao adicionar ao carrinho -->
+  <!-- [Requisito] Toast de confirmação — aparece 3 segundos após adicionar ao carrinho -->
   @if (mensagemCarrinho) {
     <div class="toast-carrinho">
       🛒 {{ mensagemCarrinho }}
@@ -33,7 +37,7 @@
     </div>
   }
 
-  <!-- Grade de produtos -->
+  <!-- [Requisito] Grid responsivo — 2 colunas no mobile, 3-4 no desktop (definido no produtos.css) -->
   @if (!carregando) {
     <div class="produtos-grid">
       @for (produto of produtosFiltrados; track produto.id) {
@@ -42,13 +46,16 @@
           <div class="imagem-container">
             <img [src]="produto.imagem" [alt]="produto.nome">
 
+            <!-- [Requisito] Tag NOVO sobre a imagem quando isNew: true -->
             @if (produto.isNew && !produto.discontinued) {
               <span class="tag tag-novo">NOVO</span>
             }
+            <!-- [Requisito] Tag ESGOTADO quando discontinued: true -->
             @if (produto.discontinued) {
               <span class="tag tag-esgotado">ESGOTADO</span>
             }
 
+            <!-- [Requisito] Botão favoritar integrado ao FavoritosService — coração cheio/vazio -->
             <button
               class="btn-favorito"
               (click)="toggleFavorito(produto)"
@@ -64,6 +71,7 @@
               <span class="preco-atual">{{ produto.preco | currency:'BRL' }}</span>
               <span class="preco-original">{{ produto.precoOriginal | currency:'BRL' }}</span>
             </div>
+            <!-- [Requisito] Botão Adicionar chama CarrinhoService.adicionar(); desabilitado se esgotado -->
             <button
               class="btn-adicionar"
               [class.desabilitado]="produto.discontinued"

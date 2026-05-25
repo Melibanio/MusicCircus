@@ -1,3 +1,10 @@
+/* ══ A DECORAÇÃO DA LOJA — O CSS de Produtos ════════════════════════════════
+   Transforma informação em experiência visual.
+   Grid responsivo: 2 colunas mobile → 3 tablet → 4 desktop.
+   Tags NOVO/ESGOTADO flutuam sobre as imagens (position: absolute).
+   Toast fixo no canto inferior direito (position: fixed).
+══════════════════════════════════════════════════════════════════════════════ */
+
 .produtos-page {
   padding: 4rem 2rem;
   max-width: 1200px;
@@ -50,6 +57,7 @@
   font-weight: bold;
 }
 
+/* ── Toast de confirmação: fixo no canto, aparece 3s e some sozinho ── */
 /* ===== TOAST ===== */
 .toast-carrinho {
   position: fixed;
@@ -79,6 +87,7 @@
   font-size: 1.6rem;
 }
 
+/* ── Grade responsiva: 2 colunas mobile → 3 tablet → 4 desktop ── */
 /* ===== GRADE DE PRODUTOS ===== */
 .produtos-grid {
   display: grid;
@@ -136,6 +145,7 @@
   display: block;
 }
 
+/* ── Tags NOVO/ESGOTADO: position absolute flutua sobre a imagem sem deslocar o card ── */
 /* ===== TAGS ===== */
 .tag {
   position: absolute;
