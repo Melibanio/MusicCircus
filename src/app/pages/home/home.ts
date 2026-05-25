@@ -61,9 +61,9 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
 
   // ── Dados: Categorias ────────────────────────────────────────────────────
   categorias: Categoria[] = [
-    { tipo: 'Instrumentos', nome: 'De Sopro',   imagem: '/public/IMG/sopro.png'      },
-    { tipo: 'Instrumentos', nome: 'De Cordas',  imagem: '/public/IMG/cordas.jpg'     },
-    { tipo: 'Instrumentos', nome: 'Percussão',  imagem: '/public/IMG/percussão.jpg'  },
+    { tipo: 'Instrumentos', nome: 'De Sopro',   imagem: '/IMG/sopro.png'      },
+    { tipo: 'Instrumentos', nome: 'De Cordas',  imagem: '/IMG/cordas.jpg'     },
+    { tipo: 'Instrumentos', nome: 'Percussão',  imagem: '/IMG/percussão.jpg'  },
   ];
 
   // ── Dados: Produtos ───────────────────────────────────────────────────────
@@ -81,12 +81,12 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
 
   // ── Dados: Cursos ─────────────────────────────────────────────────────────
   cursos: Curso[] = [
-    { titulo: 'Aulas de Bateria',  imagem: '/public/IMG/bateria.jpg',      link: 'https://www.schoolofrock.com.br/' },
-    { titulo: 'Aulas de Guitarra', imagem: '/public/IMG/guitar.jpg',       link: 'https://addmusica.com/'           },
-    { titulo: 'Aulas de Piano',    imagem: '/public/IMG/piano.jpg',        link: 'https://pianobello.com/'          },
-    { titulo: 'Aulas de Violino',  imagem: '/public/IMG/violino.jpg',      link: 'https://companhiadascordas.com.br/violino/' },
-    { titulo: 'Aulas de Saxofone', imagem: '/public/IMG/Blog-1024x683.jpg',link: 'https://studiolatitude.com.br/'  },
-    { titulo: 'Aulas de Flauta',   imagem: '/public/IMG/flauta.jpg',       link: 'https://companhiadascordas.com.br/violino/' },
+    { titulo: 'Aulas de Bateria',  imagem: '/IMG/bateria.jpg',      link: 'https://www.schoolofrock.com.br/' },
+    { titulo: 'Aulas de Guitarra', imagem: '/IMG/guitar.jpg',       link: 'https://addmusica.com/'           },
+    { titulo: 'Aulas de Piano',    imagem: '/IMG/piano.jpg',        link: 'https://pianobello.com/'          },
+    { titulo: 'Aulas de Violino',  imagem: '/IMG/violino.jpg',      link: 'https://companhiadascordas.com.br/violino/' },
+    { titulo: 'Aulas de Saxofone', imagem: '/IMG/Blog-1024x683.jpg',link: 'https://studiolatitude.com.br/'  },
+    { titulo: 'Aulas de Flauta',   imagem: '/IMG/flauta.jpg',       link: 'https://companhiadascordas.com.br/violino/' },
   ];
 
   // ── Dados para renderização do carrossel (inclui clones) ──────────────────
