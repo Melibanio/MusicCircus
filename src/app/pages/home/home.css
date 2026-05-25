@@ -1,81 +1,688 @@
 /*
-  home.component.css  —  Music Circus (Angular)
-  ==============================================
-  O CSS original (style.css) fica em src/styles.css como folha global.
-  Este arquivo contém APENAS os ajustes necessários para funcionar
-  no encapsulamento de estilos do Angular (ViewEncapsulation.Emulated).
-
-  Problema comum ao migrar:
-    No HTML puro, `header .icons` e `.icons-container .icons` convivem
-    sem conflito porque o seletor é resolvido pelo contexto do DOM.
-    No Angular com encapsulamento, o compilador adiciona atributos únicos
-    (_nghost / _ngcontent) e os seletores aninhados ainda funcionam —
-    mas qualquer seletor global precisa ficar em styles.css, não aqui.
-
-  Regra de ouro:
-    • styles.css  → regras que afetam a página inteira (reset, header, footer, etc.)
-    • home.component.css → sobrescritas e ajustes EXCLUSIVOS deste componente
+  home.css — Music Circus (Angular) — Layout Renovado
+  =====================================================
+  Usa as variáveis globais de src/styles.css:
+    --amarelo: #ffb700
+    --preto:   #0f0f0f
+    --branco:  #fff8e0
+    --cinza:   #2a2929
+    --muted:   #888
+    --claro:   #ffd000
 */
 
-/* ── Botão desabilitado do formulário de contato ──────────────── */
-/* Angular adiciona o atributo [disabled]; o CSS precisa tratar isso */
-.contato form button[disabled] {
-  opacity: 0.5;
-  cursor: not-allowed;
+/* ─── UTILITÁRIOS GLOBAIS DA HOME ──────────────────────────── */
+
+.section-heading {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 3rem;
+  color: var(--branco);
 }
 
-/* ── Correção: o botão "Adicione ao Carrinho" era <a> e virou <button> ─ */
-/* O CSS original estiliza `.image .icons a`, mas o cart-btn agora é <button> */
-.productos .box-container .box .image .icons button.cart-btn {
-  height: 5rem;
-  line-height: 5rem;
-  font-size: 1.6rem;
-  width: 100%;
-  background: var(--yellow);
-  color: var(--black);
+.section-heading span {
+  color: var(--amarelo);
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.75rem 2rem;
+  background: var(--amarelo);
+  color: var(--preto);
+  font-weight: 700;
+  font-size: 0.95rem;
+  border-radius: 100px;
+  text-decoration: none;
   border: none;
-  border-left: 0.1rem solid rgb(184, 156, 0);
-  border-right: 0.1rem solid rgb(184, 156, 0);
   cursor: pointer;
-  text-transform: capitalize;
-  transition: 0.2s linear;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  transition: background 0.25s, transform 0.2s, box-shadow 0.25s;
+  letter-spacing: 0.03em;
+}
+
+.btn:hover {
+  background: var(--claro);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 183, 0, 0.35);
+}
+
+.btn--sm {
+  padding: 0.5rem 1.4rem;
+  font-size: 0.85rem;
+}
+
+.btn--outline {
+  background: transparent;
+  border: 2px solid var(--amarelo);
+  color: var(--amarelo);
+}
+
+.btn--outline:hover {
+  background: var(--amarelo);
+  color: var(--preto);
+}
+
+.btn--full {
+  width: 100%;
+  text-align: center;
+  padding: 1rem 2rem;
+}
+
+
+/* ─── BANNER ────────────────────────────────────────────────── */
+
+.banner {
+  position: relative;
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background:
+    url('/public/IMG/banner.png') center center / cover no-repeat,
+    var(--preto);
+}
+
+/* Sombra gradiente para legibilidade do texto */
+.banner__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 15, 15, 0.62);
+  z-index: 1;
+}
+
+.banner__content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 700px;
+  padding: 4rem 2rem;
+  text-align: center;
+  animation: fadeSlideUp 0.9s ease both;
+}
+
+.banner__sub {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.banner__eyebrow {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--amarelo);
+  border: 1px solid rgba(255, 183, 0, 0.4);
+  border-radius: 100px;
+  padding: 0.3rem 1rem;
+  margin-bottom: 1.5rem;
+  backdrop-filter: blur(4px);
+  background: rgba(255, 183, 0, 0.06);
+}
+
+.banner__title {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(2.8rem, 6vw, 5rem);
+  font-weight: 800;
+  line-height: 1.08;
+  color: var(--branco);
+  margin-bottom: 1.4rem;
+  letter-spacing: -0.02em;
+}
+
+.banner__title em {
+  font-style: normal;
+  color: var(--amarelo);
+  position: relative;
+}
+
+/* sublinhado decorativo suave */
+.banner__title em::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 100%;
+  height: 3px;
+  background: var(--amarelo);
+  border-radius: 2px;
+  opacity: 0.5;
+}
+
+.banner__sub {
+  font-size: 1rem;
+  color: rgba(255, 248, 224, 0.75);
+  line-height: 1.7;
+  margin-bottom: 2.5rem;
+  max-width: 460px;
+}
+
+.banner__btn {
+  font-size: 1rem;
+  padding: 0.9rem 2.5rem;
+}
+
+
+/* ─── CATEGORIAS ────────────────────────────────────────────── */
+
+.categoria {
+  padding: 5rem 6vw;
+}
+
+.categoria__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.8rem;
+}
+
+.categoria__box {
+  border-radius: 16px;
+  overflow: hidden;
+  background: var(--cinza);
+  border: 1px solid rgba(255, 248, 224, 0.07);
+  transition: transform 0.35s cubic-bezier(.22,.68,0,1.2), box-shadow 0.35s;
+  cursor: pointer;
+}
+
+/* Animação suave de subir ao passar o mouse */
+.categoria__box:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(255, 183, 0, 0.15);
+}
+
+.categoria__img-wrap {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+}
+
+.categoria__img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.categoria__box:hover .categoria__img-wrap img {
+  transform: scale(1.06);
+}
+
+.categoria__info {
+  padding: 1.4rem 1.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.categoria__tipo {
+  font-size: 0.72rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--amarelo);
+  font-weight: 600;
+}
+
+.categoria__nome {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--branco);
+  margin-bottom: 0.6rem;
+}
+
+
+/* ─── BENEFÍCIOS (ÍCONES) ───────────────────────────────────── */
+
+.beneficios {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 0;
+  background: var(--cinza);
+  border-top: 1px solid rgba(255, 248, 224, 0.06);
+  border-bottom: 1px solid rgba(255, 248, 224, 0.06);
+}
+
+.beneficios__item {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  padding: 1.8rem 2rem;
+  border-right: 1px solid rgba(255, 248, 224, 0.06);
+  transition: background 0.2s;
+}
+
+.beneficios__item:last-child { border-right: none; }
+
+.beneficios__item:hover { background: rgba(255, 183, 0, 0.04); }
+
+.beneficios__item i {
+  font-size: 2rem;
+  color: var(--amarelo);
+  min-width: 2rem;
+}
+
+.beneficios__item h3 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--branco);
+  margin-bottom: 0.2rem;
+}
+
+.beneficios__item span {
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+
+/* ─── SOBRE NÓS ─────────────────────────────────────────────── */
+
+.sobre-nos {
+  position: relative;
+  padding: 6rem 6vw;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 3rem;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* Faixa decorativa lateral */
+.sobre-nos__deco {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: linear-gradient(to bottom, transparent, var(--amarelo), transparent);
+}
+
+.sobre-nos__label {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--amarelo);
+  margin-bottom: 1rem;
+}
+
+.sobre-nos__title {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(2rem, 3.5vw, 3.2rem);
+  font-weight: 800;
+  line-height: 1.15;
+  color: var(--branco);
+  margin-bottom: 1.4rem;
+  letter-spacing: -0.02em;
+}
+
+.sobre-nos__text {
+  font-size: 1rem;
+  color: rgba(255, 248, 224, 0.7);
+  line-height: 1.8;
+  max-width: 520px;
+  margin-bottom: 2.2rem;
+}
+
+/* Notas musicais decorativas */
+.sobre-nos__visual {
+  position: relative;
+  width: 160px;
+  height: 160px;
+  flex-shrink: 0;
+}
+
+.sobre-nos__note {
+  position: absolute;
+  font-size: 5rem;
+  color: var(--amarelo);
+  opacity: 0.08;
+  font-family: 'Syne', sans-serif;
+  animation: float-note 4s ease-in-out infinite;
+  user-select: none;
+}
+
+.sobre-nos__note         { top: 0;   left: 10px; animation-delay: 0s;  }
+.sobre-nos__note--2      { top: 50%; left: 60px; animation-delay: 1s; font-size: 4rem; opacity: 0.12; }
+.sobre-nos__note--3      { top: 70%; left: 0;    animation-delay: 2s; font-size: 3rem; opacity: 0.06; }
+
+@keyframes float-note {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-14px); }
+}
+
+
+/* ─── FORMULÁRIO DE CONTATO ─────────────────────────────────── */
+
+.contato {
+  padding: 5rem 6vw;
+}
+
+.contato .row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+.contato__form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+/* Grupos de campo elegantes com label flutuante */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.form-group label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--amarelo);
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 0.85rem 1.1rem;
+  background: rgba(42, 41, 41, 0.6);
+  border: 1px solid rgba(255, 248, 224, 0.1);
+  border-radius: 10px;
+  color: var(--branco);
+  font-size: 0.95rem;
+  font-family: 'DM Sans', sans-serif;
+  transition: border-color 0.25s, box-shadow 0.25s;
+  outline: none;
+  resize: vertical;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: var(--muted);
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: var(--amarelo);
+  box-shadow: 0 0 0 3px rgba(255, 183, 0, 0.12);
+}
+
+/* Botão desabilitado */
+.contato__form button[disabled] {
+  opacity: 0.4;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.contato .image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 248, 224, 0.07);
+}
+
+
+/* ─── HEADING GENÉRICO (Produtos, Cursos) ────────────────────── */
+
+.heading {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 3rem;
+  color: var(--branco);
+}
+
+.heading span {
+  color: var(--amarelo);
+}
+
+
+/* ─── PRODUTOS ───────────────────────────────────────────────── */
+
+.productos {
+  padding: 5rem 6vw;
+}
+
+.productos .box-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+/* Card do produto */
+.productos .box-container .box {
+  background: var(--cinza);
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 248, 224, 0.07);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s cubic-bezier(.22,.68,0,1.2), box-shadow 0.3s;
+  position: relative;
+}
+
+.productos .box-container .box:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 183, 0, 0.12);
+}
+
+/* Badge de desconto */
+.productos .box-container .box .desconto {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  z-index: 2;
+  background: var(--amarelo);
+  color: var(--preto);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  padding: 0.25rem 0.65rem;
+  border-radius: 100px;
+}
+
+/* Área da imagem */
+.productos .box-container .box .image {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background: #1a1a1a;
+}
+
+.productos .box-container .box .image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.productos .box-container .box:hover .image img {
+  transform: scale(1.05);
+}
+
+/* Overlay de ações (hover sobre a imagem) */
+.productos .box-container .box .image .icons {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  background: rgba(15, 15, 15, 0.55);
+  opacity: 0;
+  transition: opacity 0.3s;
+  flex-direction: row;
+}
+
+.productos .box-container .box:hover .image .icons {
+  opacity: 1;
+}
+
+/* Ícones de favoritar e compartilhar */
+.productos .box-container .box .image .icons a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 248, 224, 0.1);
+  color: var(--branco);
+  font-size: 1rem;
+  text-decoration: none;
+  border: 1px solid rgba(255, 248, 224, 0.15);
+  transition: background 0.2s, color 0.2s, transform 0.2s;
+  flex-shrink: 0;
+}
+
+.productos .box-container .box .image .icons a:hover {
+  background: var(--amarelo);
+  color: var(--preto);
+  transform: scale(1.1);
+}
+
+/* Botão de carrinho */
+.productos .box-container .box .image .icons button.cart-btn {
+  flex: 1;
+  height: 44px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  width: auto;
+  background: var(--amarelo);
+  color: var(--preto);
+  border: none;
+  border-left: 1px solid rgba(184, 156, 0, 0.6);
+  border-right: 1px solid rgba(184, 156, 0, 0.6);
+  cursor: pointer;
+  text-transform: none;
+  letter-spacing: 0.03em;
+  transition: background 0.2s;
+  font-family: 'DM Sans', sans-serif;
+  padding: 0 1rem;
+  line-height: 1;
+  white-space: nowrap;
 }
 
 .productos .box-container .box .image .icons button.cart-btn:hover {
-  background: var(--sombra);
+  background: var(--claro);
 }
 
-/* ── Carrossel: garante que o track não quebre o layout ───────── */
-/* No Angular o *ngFor renderiza os clones em tempo de execução;
-   overflow:hidden precisa estar no wrapper para evitar flash inicial */
+/* Info do produto (nome e preço) */
+.productos .box-container .box .content {
+  padding: 1.1rem 1.3rem 1.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1;
+}
+
+.productos .box-container .box .content h3 {
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--branco);
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.productos .box-container .box .content .preço {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--amarelo);
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.productos .box-container .box .content .preço span {
+  font-size: 0.8rem;
+  font-weight: 400;
+  font-family: 'DM Sans', sans-serif;
+  color: var(--muted);
+  text-decoration: line-through;
+}
+
+/* Responsivo — 2 colunas em tablet, 1 em mobile */
+@media (max-width: 960px) {
+  .productos .box-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 560px) {
+  .productos .box-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* ─── CARROSSEL ──────────────────────────────────────────────── */
+
 .caroussel .carousel {
   overflow: hidden;
 }
 
-/* ── routerLinkActive: estilo para link ativo no menu ─────────── */
-header .navbar a.active {
-  color: var(--yellow);
+
+/* ─── RESPONSIVIDADE ─────────────────────────────────────────── */
+
+@media (max-width: 900px) {
+  .contato .row {
+    grid-template-columns: 1fr;
+  }
+
+  .sobre-nos {
+    grid-template-columns: 1fr;
+  }
+
+  .sobre-nos__visual {
+    display: none;
+  }
+
+  .beneficios {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 
-/* ── Formulário: remove aparência nativa do <button type="submit"> ── */
-.contato form button[type='submit'].btn {
-  display: block;
-  width: 100%;
-  background: var(--yellow);
-  color: var(--black);
-  font-size: 1.7rem;
-  padding: 1.2rem;
-  border-radius: 5rem;
-  cursor: pointer;
-  border: none;
-  margin-top: 1rem;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  text-transform: capitalize;
-  transition: 0.2s linear;
+@media (max-width: 600px) {
+  .banner__title {
+    font-size: 2.4rem;
+  }
+
+  .beneficios {
+    grid-template-columns: 1fr;
+  }
+
+  .beneficios__item {
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 248, 224, 0.06);
+  }
+}
+.creditos {
+  text-align: center;
+  font-size: 0.78rem;
+  color: var(--muted);
+  border-top: 1px solid rgba(255, 248, 224, 0.06);
+  padding-top: 1.5rem;
 }
 
-.contato form button[type='submit'].btn:hover:not([disabled]) {
-  background: var(--sombra);
-  color: #fff;
+.creditos span {
+  color: var(--amarelo);
 }
