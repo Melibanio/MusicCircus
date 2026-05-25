@@ -28,37 +28,27 @@ interface Favorito {
   templateUrl: './perfil.html',
   styleUrls: ['./perfil.css'],
 })
-export class Perfil implements OnInit {  // ← adicionar implements OnInit
-
-  ngOnInit(): void {
-    const salvo = localStorage.getItem('usuarioLogado');
-    if (salvo) {
-      const usuario = JSON.parse(salvo);
-      this.usuarioLogado = true;
-      this.nomePerfil   = usuario.nome  || '';
-      this.formNome     = usuario.nome  || '';
-      this.formEmail    = usuario.email || '';
-      this.formTelefone = usuario.telefone || '';
-    }
-  }
+export class Perfil implements OnInit {
 
   // ── Estado de autenticação ────────────────────────────────────────────────
-  // Substitui: const usuarioLogado = false;
-  // Trocar para true (ou injetar AuthService) quando o login estiver pronto.
-  usuarioLogado = true;
+  usuarioLogado = false;
 
   constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
-    const usuario = this.authService.getUsuarioLogado();
+    // Tenta AuthService primeiro ('mc_usuario'); fallback para 'usuarioLogado' (chave do login da Melissa)
+    const usuario = this.authService.getUsuarioLogado()
+      ?? (() => { const s = localStorage.getItem('usuarioLogado'); return s ? JSON.parse(s) : null; })();
+
     if (!usuario) {
       this.router.navigate(['/login']);
       return;
     }
     this.usuarioLogado = true;
-    this.nomePerfil = usuario.nome;
-    this.formNome = usuario.nome;
-    this.formEmail = usuario.email;
+    this.nomePerfil   = usuario.nome  || '';
+    this.formNome     = usuario.nome  || '';
+    this.formEmail    = usuario.email || '';
+    this.formTelefone = usuario.telefone || '';
   }
 
   sair(): void {
