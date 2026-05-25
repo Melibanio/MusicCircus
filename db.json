@@ -7,7 +7,7 @@
       "preco": 585.00,
       "precoOriginal": 650.00,
       "categoria": "Cordas",
-      "imagem": "IMG/violão1.jpeg",
+      "imagem": "/IMG/violão1.jpeg",
       "isNew": true,
       "discontinued": false
     },
@@ -18,7 +18,7 @@
       "preco": 702.90,
       "precoOriginal": 780.90,
       "categoria": "Sopro",
-      "imagem": "IMG/flauta1.jpeg",
+      "imagem": "/IMG/flauta1.jpeg",
       "isNew": false,
       "discontinued": false
     },
@@ -29,7 +29,7 @@
       "preco": 1341.90,
       "precoOriginal": 1490.90,
       "categoria": "Cordas",
-      "imagem": "IMG/guitarra1.jpeg",
+      "imagem": "/IMG/guitarra1.jpeg",
       "isNew": true,
       "discontinued": false
     },
@@ -40,7 +40,7 @@
       "preco": 585.00,
       "precoOriginal": 650.00,
       "categoria": "Cordas",
-      "imagem": "IMG/violino1.jpeg",
+      "imagem": "/IMG/violino1.jpeg",
       "isNew": false,
       "discontinued": false
     },
@@ -51,7 +51,7 @@
       "preco": 7609.95,
       "precoOriginal": 8455.50,
       "categoria": "Sopro",
-      "imagem": "IMG/saxofone1.jpeg",
+      "imagem": "/IMG/saxofone1.jpeg",
       "isNew": false,
       "discontinued": false
     },
@@ -62,7 +62,7 @@
       "preco": 769.50,
       "precoOriginal": 855.00,
       "categoria": "Percussão",
-      "imagem": "IMG/pandeiro1.jpeg",
+      "imagem": "/IMG/pandeiro1.jpeg",
       "isNew": false,
       "discontinued": false
     },
@@ -73,7 +73,7 @@
       "preco": 2097.00,
       "precoOriginal": 2330.00,
       "categoria": "Percussão",
-      "imagem": "IMG/bateria1.jpeg",
+      "imagem": "/IMG/bateria1.jpeg",
       "isNew": true,
       "discontinued": false
     },
@@ -84,7 +84,7 @@
       "preco": 117.00,
       "precoOriginal": 130.00,
       "categoria": "Percussão",
-      "imagem": "IMG/assalato1.jpeg",
+      "imagem": "/IMG/assalato1.jpeg",
       "isNew": false,
       "discontinued": false
     },
@@ -95,7 +95,7 @@
       "preco": 135.00,
       "precoOriginal": 150.00,
       "categoria": "Sopro",
-      "imagem": "IMG/gaita1.jpeg",
+      "imagem": "/IMG/gaita1.jpeg",
       "isNew": false,
       "discontinued": false
     },
@@ -106,7 +106,7 @@
       "preco": 2199.00,
       "precoOriginal": 2450.00,
       "categoria": "Cordas",
-      "imagem": "IMG/baixo1.jpeg",
+      "imagem": "/IMG/baixo1.jpeg",
       "isNew": true,
       "discontinued": false
     },
@@ -117,7 +117,7 @@
       "preco": 389.00,
       "precoOriginal": 430.00,
       "categoria": "Cordas",
-      "imagem": "IMG/ukulele1.jpeg",
+      "imagem": "/IMG/ukulele1.jpeg",
       "isNew": false,
       "discontinued": false
     },
@@ -128,7 +128,7 @@
       "preco": 749.00,
       "precoOriginal": 830.00,
       "categoria": "Cordas",
-      "imagem": "IMG/cavaquinho1.jpeg",
+      "imagem": "/IMG/cavaquinho1.jpeg",
       "isNew": false,
       "discontinued": false
     },
@@ -139,7 +139,7 @@
       "preco": 895.00,
       "precoOriginal": 990.00,
       "categoria": "Cordas",
-      "imagem": "IMG/bandolim1.jpeg",
+      "imagem": "/IMG/bandolim1.jpeg",
       "isNew": false,
       "discontinued": false
     },
@@ -150,7 +150,7 @@
       "preco": 3299.00,
       "precoOriginal": 3650.00,
       "categoria": "Cordas",
-      "imagem": "IMG/lespaul1.jpeg",
+      "imagem": "/IMG/lespaul1.jpeg",
       "isNew": true,
       "discontinued": false
     },
@@ -161,7 +161,7 @@
       "preco": 1490.00,
       "precoOriginal": 1650.00,
       "categoria": "Cordas",
-      "imagem": "IMG/violoncelo1.jpeg",
+      "imagem": "/IMG/violoncelo1.jpeg",
       "isNew": false,
       "discontinued": false
     },
@@ -172,7 +172,7 @@
       "preco": 3850.00,
       "precoOriginal": 4280.00,
       "categoria": "Sopro",
-      "imagem": "IMG/trompete1.jpeg",
+      "imagem": "/IMG/trompete1.jpeg",
       "isNew": false,
       "discontinued": false
     },
@@ -183,7 +183,7 @@
       "preco": 1199.00,
       "precoOriginal": 1330.00,
       "categoria": "Sopro",
-      "imagem": "IMG/clarinete1.jpeg",
+      "imagem": "/IMG/clarinete1.jpeg",
       "isNew": false,
       "discontinued": false
     },
@@ -194,7 +194,7 @@
       "preco": 2250.00,
       "precoOriginal": 2500.00,
       "categoria": "Sopro",
-      "imagem": "IMG/trombone1.jpeg",
+      "imagem": "/IMG/trombone1.jpeg",
       "isNew": false,
       "discontinued": false
     },
@@ -205,7 +205,7 @@
       "preco": 5990.00,
       "precoOriginal": 6650.00,
       "categoria": "Sopro",
-      "imagem": "IMG/oboe1.jpeg",
+      "imagem": "/IMG/oboe1.jpeg",
       "isNew": false,
       "discontinued": false
     },
@@ -216,7 +216,7 @@
       "preco": 899.00,
       "precoOriginal": 995.00,
       "categoria": "Sopro",
-      "imagem": "IMG/flautatransversal1.jpeg",
+      "imagem": "/IMG/flautatransversal1.jpeg",
       "isNew": true,
       "discontinued": false
     },
@@ -227,7 +227,7 @@
       "preco": 12500.00,
       "precoOriginal": 13900.00,
       "categoria": "Sopro",
-      "imagem": "IMG/tuba1.jpeg",
+      "imagem": "/IMG/tuba1.jpeg",
       "isNew": false,
       "discontinued": false
     },
@@ -238,7 +238,7 @@
       "preco": 5499.00,
       "precoOriginal": 6100.00,
       "categoria": "Percussão",
-      "imagem": "IMG/bateriaacustica1.jpeg",
+      "imagem": "/IMG/bateriaacustica1.jpeg",
       "isNew": true,
       "discontinued": false
     },
@@ -249,7 +249,7 @@
       "preco": 649.00,
       "precoOriginal": 720.00,
       "categoria": "Percussão",
-      "imagem": "IMG/cajon1.jpeg",
+      "imagem": "/IMG/cajon1.jpeg",
       "isNew": false,
       "discontinued": false
     },
@@ -260,7 +260,7 @@
       "preco": 2199.00,
       "precoOriginal": 2450.00,
       "categoria": "Cordas",
-      "imagem": "IMG/baixo1.jpeg",
+      "imagem": "/IMG/baixo1.jpeg",
       "isNew": true,
       "discontinued": false
     },
@@ -271,7 +271,7 @@
       "preco": 389.00,
       "precoOriginal": 430.00,
       "categoria": "Cordas",
-      "imagem": "IMG/ukulele1.jpeg",
+      "imagem": "/IMG/ukulele1.jpeg",
       "isNew": false,
       "discontinued": false
     },
@@ -282,7 +282,7 @@
       "preco": 749.00,
       "precoOriginal": 830.00,
       "categoria": "Cordas",
-      "imagem": "IMG/cavaquinho1.jpeg",
+      "imagem": "/IMG/cavaquinho1.jpeg",
       "isNew": false,
       "discontinued": false
     },
@@ -293,7 +293,7 @@
       "preco": 895.00,
       "precoOriginal": 990.00,
       "categoria": "Cordas",
-      "imagem": "IMG/bandolim1.jpeg",
+      "imagem": "/IMG/bandolim1.jpeg",
       "isNew": false,
       "discontinued": false
     },
@@ -304,7 +304,7 @@
       "preco": 3299.00,
       "precoOriginal": 3650.00,
       "categoria": "Cordas",
-      "imagem": "IMG/lespaul1.jpeg",
+      "imagem": "/IMG/lespaul1.jpeg",
       "isNew": true,
       "discontinued": false
     },
@@ -315,7 +315,7 @@
       "preco": 1490.00,
       "precoOriginal": 1650.00,
       "categoria": "Cordas",
-      "imagem": "IMG/violoncelo1.jpeg",
+      "imagem": "/IMG/violoncelo1.jpeg",
       "isNew": false,
       "discontinued": false
     },
@@ -326,7 +326,7 @@
       "preco": 3850.00,
       "precoOriginal": 4280.00,
       "categoria": "Sopro",
-      "imagem": "IMG/trompete1.jpeg",
+      "imagem": "/IMG/trompete1.jpeg",
       "isNew": false,
       "discontinued": false
     },
@@ -337,7 +337,7 @@
       "preco": 1199.00,
       "precoOriginal": 1330.00,
       "categoria": "Sopro",
-      "imagem": "IMG/clarinete1.jpeg",
+      "imagem": "/IMG/clarinete1.jpeg",
       "isNew": false,
       "discontinued": false
     },
@@ -348,7 +348,7 @@
       "preco": 2250.00,
       "precoOriginal": 2500.00,
       "categoria": "Sopro",
-      "imagem": "IMG/trombone1.jpeg",
+      "imagem": "/IMG/trombone1.jpeg",
       "isNew": false,
       "discontinued": false
     },
@@ -359,7 +359,7 @@
       "preco": 5990.00,
       "precoOriginal": 6650.00,
       "categoria": "Sopro",
-      "imagem": "IMG/oboe1.jpeg",
+      "imagem": "/IMG/oboe1.jpeg",
       "isNew": false,
       "discontinued": false
     },
@@ -370,7 +370,7 @@
       "preco": 899.00,
       "precoOriginal": 995.00,
       "categoria": "Sopro",
-      "imagem": "IMG/flautatransversal1.jpeg",
+      "imagem": "/IMG/flautatransversal1.jpeg",
       "isNew": true,
       "discontinued": false
     },
@@ -381,7 +381,7 @@
       "preco": 12500.00,
       "precoOriginal": 13900.00,
       "categoria": "Sopro",
-      "imagem": "IMG/tuba1.jpeg",
+      "imagem": "/IMG/tuba1.jpeg",
       "isNew": false,
       "discontinued": false
     },
@@ -392,7 +392,7 @@
       "preco": 5499.00,
       "precoOriginal": 6100.00,
       "categoria": "Percussão",
-      "imagem": "IMG/bateriaacustica1.jpeg",
+      "imagem": "/IMG/bateriaacustica1.jpeg",
       "isNew": true,
       "discontinued": false
     },
@@ -403,7 +403,7 @@
       "preco": 649.00,
       "precoOriginal": 720.00,
       "categoria": "Percussão",
-      "imagem": "IMG/cajon1.jpeg",
+      "imagem": "/IMG/cajon1.jpeg",
       "isNew": false,
       "discontinued": false
     },
@@ -414,7 +414,7 @@
       "preco": 530.00,
       "precoOriginal": 590.00,
       "categoria": "Percussão",
-      "imagem": "IMG/djembe1.jpeg",
+      "imagem": "/IMG/djembe1.jpeg",
       "isNew": false,
       "discontinued": false
     },
@@ -425,7 +425,7 @@
       "preco": 189.00,
       "precoOriginal": 210.00,
       "categoria": "Percussão",
-      "imagem": "IMG/xilofone1.jpeg",
+      "imagem": "/IMG/xilofone1.jpeg",
       "isNew": false,
       "discontinued": false
     },
@@ -436,7 +436,7 @@
       "preco": 1290.00,
       "precoOriginal": 1430.00,
       "categoria": "Percussão",
-      "imagem": "IMG/conga1.jpeg",
+      "imagem": "/IMG/conga1.jpeg",
       "isNew": false,
       "discontinued": false
     },
@@ -447,7 +447,7 @@
       "preco": 310.00,
       "precoOriginal": 345.00,
       "categoria": "Percussão",
-      "imagem": "IMG/bongo1.jpeg",
+      "imagem": "/IMG/bongo1.jpeg",
       "isNew": false,
       "discontinued": false
     },
@@ -458,7 +458,7 @@
       "preco": 89.00,
       "precoOriginal": 99.00,
       "categoria": "Percussão",
-      "imagem": "IMG/triangulo1.jpeg",
+      "imagem": "/IMG/triangulo1.jpeg",
       "isNew": false,
       "discontinued": true
     },
@@ -469,7 +469,7 @@
       "preco": 2890.00,
       "precoOriginal": 3210.00,
       "categoria": "Percussão",
-      "imagem": "IMG/pratos1.jpeg",
+      "imagem": "/IMG/pratos1.jpeg",
       "isNew": true,
       "discontinued": false
     }
