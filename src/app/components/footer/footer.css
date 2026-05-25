@@ -1,1 +1,232 @@
-:host { display: none; }
+/*
+  footer.css — Music Circus (Angular) — Layout Renovado
+  ======================================================
+  Segue o mesmo sistema visual do header:
+  backdrop glass, linha amarela decorativa, ponto pulsante no logo.
+*/
+
+/* ── Wrapper ─────────────────────────────────────────────────── */
+
+.mc-footer {
+  background: rgba(12, 12, 12, 0.97);
+  border-top: 1px solid rgba(255, 248, 224, 0.06);
+}
+
+/* ── Linha decorativa topo (espelho do header) ───────────────── */
+
+.mc-footer__topbar {
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--amarelo) 30%,
+    var(--claro) 60%,
+    transparent 100%
+  );
+  opacity: 0.75;
+}
+
+/* ── Corpo principal ─────────────────────────────────────────── */
+
+.mc-footer__body {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 4rem;
+  padding: 3.5rem 6vw 2.5rem;
+  align-items: start;
+}
+
+/* ── Brand (logo + tagline + redes) ─────────────────────────── */
+
+.mc-footer__brand {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 280px;
+}
+
+.mc-footer__logo {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 1.55rem;
+  color: var(--branco);
+  text-decoration: none;
+  letter-spacing: -0.02em;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  transition: opacity 0.2s;
+}
+
+.mc-footer__logo:hover { opacity: 0.8; }
+
+.mc-footer__logo span { color: var(--amarelo); }
+
+/* Ponto pulsante — idêntico ao header */
+.mc-footer__logo-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--amarelo);
+  margin-left: 4px;
+  animation: mc-pulse-dot 2.4s ease-in-out infinite;
+}
+
+@keyframes mc-pulse-dot {
+  0%, 100% { transform: scale(1);   opacity: 1;   }
+  50%       { transform: scale(1.6); opacity: 0.5; }
+}
+
+.mc-footer__tagline {
+  font-size: 0.85rem;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+/* Ícones de redes sociais */
+.mc-footer__socials {
+  display: flex;
+  gap: 0.6rem;
+  margin-top: 0.25rem;
+}
+
+.mc-footer__socials a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 248, 224, 0.1);
+  color: var(--muted);
+  font-size: 0.85rem;
+  text-decoration: none;
+  transition: color 0.2s, border-color 0.2s, background 0.2s, transform 0.2s;
+}
+
+.mc-footer__socials a:hover {
+  color: var(--amarelo);
+  border-color: var(--amarelo);
+  background: rgba(255, 183, 0, 0.08);
+  transform: translateY(-2px);
+}
+
+/* ── Navegação em colunas ────────────────────────────────────── */
+
+.mc-footer__nav {
+  display: flex;
+  gap: 4rem;
+}
+
+.mc-footer__col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.mc-footer__col h4 {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--amarelo);
+  margin-bottom: 0.35rem;
+}
+
+.mc-footer__col a {
+  font-size: 0.86rem;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.2s, padding-left 0.2s;
+}
+
+.mc-footer__col a:hover {
+  color: var(--branco);
+  padding-left: 4px;
+}
+
+/* ── Divisória ───────────────────────────────────────────────── */
+
+.mc-footer__divider {
+  height: 1px;
+  margin: 0 6vw;
+  background: rgba(255, 248, 224, 0.06);
+}
+
+/* ── Barra de créditos ───────────────────────────────────────── */
+
+.mc-footer__bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.4rem 6vw 1.8rem;
+  flex-wrap: wrap;
+}
+
+.mc-footer__credits {
+  font-size: 0.82rem;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+/* Badge @SENAC */
+.mc-footer__credits-tag {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  background: rgba(255, 183, 0, 0.12);
+  color: var(--amarelo);
+  border: 1px solid rgba(255, 183, 0, 0.3);
+  border-radius: 100px;
+  padding: 0.15rem 0.65rem;
+}
+
+.mc-footer__sep {
+  color: rgba(255, 248, 224, 0.2);
+}
+
+.mc-footer__highlight {
+  color: var(--amarelo);
+  font-weight: 600;
+}
+
+.mc-footer__rights {
+  font-size: 0.76rem;
+  color: rgba(255, 248, 224, 0.2);
+}
+
+/* ── Responsivo ──────────────────────────────────────────────── */
+
+@media (max-width: 860px) {
+  .mc-footer__body {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .mc-footer__nav {
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .mc-footer__brand {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 560px) {
+  .mc-footer__bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .mc-footer__nav {
+    gap: 1.5rem;
+  }
+}
